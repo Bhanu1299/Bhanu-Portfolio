@@ -50,7 +50,7 @@ export default function ContactSection() {
                     <h3 className="text-xl font-bold text-white mb-6 theme-text-primary">Get In Touch</h3>
                     <div className="space-y-5">
                       <motion.a
-                        href="mailto:alex.chen@email.com"
+                        href="mailto:bteja0519@email.com"
                         className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group/item theme-text-secondary"
                         whileHover={{ x: 5 }}
                       >
@@ -59,7 +59,7 @@ export default function ContactSection() {
                         </div>
                         <div>
                           <div className="text-xs text-slate-500 mb-0.5 theme-text-muted">Email</div>
-                          <div className="text-sm">alex.chen@email.com</div>
+                          <div className="text-sm">bteja0519@email.com</div>
                         </div>
                       </motion.a>
 
@@ -73,7 +73,7 @@ export default function ContactSection() {
                         </div>
                         <div>
                           <div className="text-xs text-slate-500 mb-0.5 theme-text-muted">LinkedIn</div>
-                          <div className="text-sm">linkedin.com/in/alexchen</div>
+                          <div className="text-sm">https://www.linkedin.com/in/bhanuteja1299/</div>
                         </div>
                       </motion.a>
 

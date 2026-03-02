@@ -141,7 +141,7 @@ export default function HeroSection() {
           >
             Hi, I'm{" "}
             <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-              Alex Chen
+              Bhanu Teja 
             </span>
           </motion.h1>
 
