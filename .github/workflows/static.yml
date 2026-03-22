@@ -34,13 +34,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/frontend/pnpm-lock.yaml
       - name: Install dependencies
         run: |
           corepack enable
-          corepack prepare pnpm@8.10.0 --activate
           pnpm --dir app/frontend install --frozen-lockfile
       - name: Build frontend
         run: pnpm --dir app/frontend run build
