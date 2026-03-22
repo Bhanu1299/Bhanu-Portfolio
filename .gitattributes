@@ -33,3 +33,6 @@
 *.dxf filter=lfs diff=lfs merge=lfs -text
 *.wmf filter=lfs diff=lfs merge=lfs -text
 *.emf filter=lfs diff=lfs merge=lfs -text
+# Keep critical site assets in-repo (not LFS pointers)
+app/frontend/public/favicon.svg -filter -diff -merge text
+docs/Bhanu_Teja_Resume.pdf -filter -diff -merge -text
