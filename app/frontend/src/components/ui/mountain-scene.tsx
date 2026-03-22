@@ -13,10 +13,10 @@ export function GenerativeMountainScene() {
   useEffect(() => {
     const currentMount = mountRef.current;
     if (!currentMount) return;
-    
+
     // SCENE SETUP
     const scene = new THREE.Scene();
-    
+
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -33,7 +33,7 @@ export function GenerativeMountainScene() {
     currentMount.appendChild(renderer.domElement);
 
     // GEOMETRY
-    const geometry = new THREE.PlaneGeometry(12, 8, 128, 128); 
+    const geometry = new THREE.PlaneGeometry(12, 8, 128, 128);
 
     // SHADER MATERIAL
     const material = new THREE.ShaderMaterial({
@@ -162,18 +162,18 @@ export function GenerativeMountainScene() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        const x = (e.clientX / window.innerWidth) * 2 - 1;
-        const y = -(e.clientY / window.innerHeight) * 2 + 1;
-        const lightX = x * 5;
-        const lightY = y * 5;
-        const pos = new THREE.Vector3(lightX, 2, 2 - y * 2);
-        
-        if (lightRef.current) {
-            lightRef.current.position.copy(pos);
-        }
-        if (material.uniforms.pointLightPosition) {
-             material.uniforms.pointLightPosition.value = pos;
-        }
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      const lightX = x * 5;
+      const lightY = y * 5;
+      const pos = new THREE.Vector3(lightX, 2, 2 - y * 2);
+
+      if (lightRef.current) {
+        lightRef.current.position.copy(pos);
+      }
+      if (material.uniforms.pointLightPosition) {
+        material.uniforms.pointLightPosition.value = pos;
+      }
     };
 
     window.addEventListener("resize", handleResize);

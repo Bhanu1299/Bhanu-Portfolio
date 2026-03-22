@@ -51,22 +51,14 @@ export default function AboutSection() {
         <ScrollReveal delay={0.1}>
           <div className="max-w-3xl mx-auto mb-16">
             <Card3D className="group" intensity={8}>
-              <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:border-indigo-500/20 transition-all duration-500 theme-card">
-                <p className="text-slate-300 leading-relaxed text-lg theme-text-secondary">
-                  I recently completed my{" "}
-                  <span className="text-white font-semibold theme-text-primary">Master's in Computer Science</span>,
-                  where I specialized in distributed systems and machine learning. I'm passionate
-                  about building products that solve real-world problems — from scalable web
-                  applications to intelligent data pipelines. I thrive in fast-paced environments
-                  and love collaborating with cross-functional teams to ship impactful software.
-                </p>
-                <p className="text-slate-300 leading-relaxed text-lg mt-4 theme-text-secondary">
-                  Currently seeking{" "}
-                  <span className="text-indigo-400 font-semibold">
-                    Software Engineer / Full-Stack / ML Engineer
-                  </span>{" "}
-                  roles where I can contribute to innovative products and grow alongside a talented team.
-                </p>
+              <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:border-indigo-500/20 transition-all duration-500 theme-card space-y-4">
+                {personalInfo.bio.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className="text-slate-300 leading-relaxed text-lg theme-text-secondary [&_strong]:text-white [&_strong]:font-semibold"
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
+                ))}
               </div>
             </Card3D>
           </div>

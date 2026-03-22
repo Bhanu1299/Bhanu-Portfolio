@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import ExperienceSection from "@/components/ExperienceSection";
+import EducationSection from "@/components/EducationSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -14,6 +16,8 @@ export default function Index() {
           <Navbar />
           <HeroSection />
           <AboutSection />
+          <ExperienceSection />
+          <EducationSection />
           <ProjectsSection />
           <ContactSection />
         </div>

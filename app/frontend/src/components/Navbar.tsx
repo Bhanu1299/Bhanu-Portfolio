@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, Download } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { personalInfo } from "../data/portfolio";
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
@@ -49,11 +52,11 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            &lt;Portfolio /&gt;
+            {personalInfo.name.split(" ").slice(0, 2).join(" ")}
           </motion.button>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link, i) => (
               <motion.button
                 key={link.label}
@@ -67,11 +70,27 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-violet-500 group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
+
+            {/* Download Resume */}
+            <motion.a
+              href={personalInfo.resumePath}
+              download
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/25 hover:border-indigo-500/50 transition-all text-xs font-medium"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download className="w-3 h-3" />
+              Resume
+            </motion.a>
+
             <motion.div
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.6 }}
             >
               <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
               <span className="text-xs font-medium text-emerald-400">Open to Work</span>
@@ -105,6 +124,18 @@ export default function Navbar() {
                   {link.label}
                 </button>
               ))}
+
+              {/* Download Resume — mobile */}
+              <a
+                href={personalInfo.resumePath}
+                download
+                className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/25 transition-all text-sm font-medium w-fit"
+                onClick={() => setIsMobileOpen(false)}
+              >
+                <Download className="w-3.5 h-3.5" />
+                Download Resume
+              </a>
+
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 w-fit">
                 <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
                 <span className="text-xs font-medium text-emerald-400">Open to Work</span>
