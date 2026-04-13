@@ -15,24 +15,24 @@ function TimelineCard({
 }) {
   return (
     <div
-      className="rounded-2xl p-5 bg-white/[0.03] border border-white/[0.06] hover:border-violet-500/20 hover:bg-white/[0.045] transition-colors duration-300 cursor-pointer select-none w-full"
+      className="rounded-[2px] p-5 bg-white/30 dark:bg-white/[0.02] border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 hover:bg-white/40 dark:hover:bg-white/[0.03] transition-colors duration-300 cursor-pointer select-none w-full"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3
             className={`text-base font-bold transition-colors duration-300 ${
-              expanded ? "text-violet-300" : "text-white"
+              expanded ? "text-gold dark:text-gold-dark" : "text-brown-900 dark:text-cream"
             }`}
           >
             {job.company}
           </h3>
-          <p className="text-slate-400 text-sm mt-0.5">{job.role}</p>
+          <p className="text-brown-500 dark:text-brown-400 text-sm mt-0.5">{job.role}</p>
           <div className="flex flex-wrap items-center gap-2 mt-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium rounded-full bg-white/[0.05] text-slate-500 border border-white/[0.06]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 rounded-[2px]">
               {job.dateRange}
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium rounded-full bg-white/[0.05] text-slate-500 border border-white/[0.06]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 rounded-[2px]">
               <MapPin className="w-2.5 h-2.5" />
               {job.location}
             </span>
@@ -43,7 +43,7 @@ function TimelineCard({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="flex-shrink-0 mt-1"
         >
-          <ChevronDown className="w-4 h-4 text-slate-500" />
+          <ChevronDown className="w-4 h-4 text-brown-400 dark:text-brown-600" />
         </motion.div>
       </div>
 
@@ -57,7 +57,7 @@ function TimelineCard({
             transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
             className="overflow-hidden"
           >
-            <ul className="mt-4 space-y-2.5 border-l border-violet-500/20 pl-4">
+            <ul className="mt-4 space-y-2.5 border-l border-gold/20 dark:border-brown-700 pl-4">
               {job.bullets.map((bullet, j) => (
                 <motion.li
                   key={j}
@@ -66,8 +66,8 @@ function TimelineCard({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: j * 0.06, duration: 0.25 }}
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400/70 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-400 text-sm leading-relaxed">{bullet}</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-gold/70 dark:text-gold-dark/70 flex-shrink-0 mt-0.5" />
+                  <span className="text-brown-500 dark:text-brown-400 text-sm leading-relaxed">{bullet}</span>
                 </motion.li>
               ))}
             </ul>
@@ -101,8 +101,8 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
             onClick={() => setExpanded(!expanded)}
             className={`w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 relative ${
               expanded
-                ? "bg-violet-500 border-violet-300 shadow-[0_0_12px_rgba(139,92,246,0.6)]"
-                : "bg-[#0A0A0F] border-violet-500/50 hover:border-violet-400 hover:shadow-[0_0_8px_rgba(139,92,246,0.4)]"
+                ? "bg-gold border-gold/80 shadow-[0_0_12px_rgba(201,169,110,0.6)]"
+                : "bg-parchment dark:bg-sepia-bg border-gold/50 hover:border-gold hover:shadow-[0_0_8px_rgba(201,169,110,0.4)]"
             }`}
             aria-label={`Toggle ${job.company}`}
           />
@@ -125,8 +125,8 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
             onClick={() => setExpanded(!expanded)}
             className={`relative z-10 w-4 h-4 mt-5 rounded-full border-2 transition-all duration-300 flex-shrink-0 ${
               expanded
-                ? "bg-violet-500 border-violet-300 shadow-[0_0_12px_rgba(139,92,246,0.6)]"
-                : "bg-[#0A0A0F] border-violet-500/50 hover:border-violet-400 hover:shadow-[0_0_8px_rgba(139,92,246,0.4)]"
+                ? "bg-gold border-gold/80 shadow-[0_0_12px_rgba(201,169,110,0.6)]"
+                : "bg-parchment dark:bg-sepia-bg border-gold/50 hover:border-gold hover:shadow-[0_0_8px_rgba(201,169,110,0.4)]"
             }`}
             aria-label={`Toggle ${job.company}`}
           />
@@ -141,23 +141,25 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-24 px-6 overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-600/5 rounded-full blur-[150px] pointer-events-none" />
-
+    <section id="experience" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-5xl mx-auto relative">
         {/* Section header */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-violet-400 tracking-widest uppercase">
-              Career
+            <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+              Experience
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mt-3">
-              Work{" "}
-              <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
-                Experience
-              </span>
+            <motion.div
+              className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+              initial={{ width: 0 }}
+              whileInView={{ width: 40 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+            <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
+              Work Experience
             </h2>
-            <p className="text-slate-400 mt-4 max-w-lg mx-auto">
+            <p className="text-brown-500 dark:text-brown-400 mt-4 max-w-lg mx-auto">
               Building real systems, shipping real products, and solving real problems. Click any card to expand.
             </p>
           </div>
@@ -170,7 +172,7 @@ export default function ExperienceSection() {
             className="hidden md:block absolute left-1/2 top-5 bottom-5 w-px pointer-events-none -translate-x-1/2"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(139,92,246,0) 0%, rgba(139,92,246,0.4) 8%, rgba(139,92,246,0.4) 92%, rgba(139,92,246,0) 100%)",
+                "linear-gradient(to bottom, rgba(201,169,110,0) 0%, rgba(201,169,110,0.4) 8%, rgba(201,169,110,0.4) 92%, rgba(201,169,110,0) 100%)",
             }}
           />
 
@@ -179,7 +181,7 @@ export default function ExperienceSection() {
             className="md:hidden absolute left-[11px] top-5 bottom-5 w-px pointer-events-none"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(139,92,246,0) 0%, rgba(139,92,246,0.4) 8%, rgba(139,92,246,0.4) 92%, rgba(139,92,246,0) 100%)",
+                "linear-gradient(to bottom, rgba(201,169,110,0) 0%, rgba(201,169,110,0.4) 8%, rgba(201,169,110,0.4) 92%, rgba(201,169,110,0) 100%)",
             }}
           />
 
