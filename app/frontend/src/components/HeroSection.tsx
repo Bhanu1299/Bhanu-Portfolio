@@ -4,7 +4,7 @@ import { personalInfo } from "../data/portfolio";
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
-  const contentY = useTransform(scrollY, [0, 800], [0, 150]);
+  const contentY = useTransform(scrollY, [0, 800], [0, 60]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   const fadeUp = (delay: number) => ({
@@ -14,60 +14,56 @@ export default function HeroSection() {
   });
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: '#0A0A0F' }}
-    >
-      {/* Animated gradient blobs — behind the glass */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="hero-blob hero-blob-1" />
-        <div className="hero-blob hero-blob-2" />
-        <div className="hero-blob hero-blob-3" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
+      {/* Warm glow — dark mode only */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none bg-brown-700/0 dark:bg-brown-700/10" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none bg-brown-800/0 dark:bg-brown-800/[0.08]" />
 
-      {/* Liquid glass overlay — covers full screen */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(40px) saturate(180%) brightness(1.1)',
-          WebkitBackdropFilter: 'blur(40px) saturate(180%) brightness(1.1)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
-          boxShadow: 'inset 0 0 80px rgba(255,255,255,0.03), 0 0 40px rgba(100,200,255,0.08)',
-        }}
-      />
-
-      {/* Content — sits directly on the glass, no inner card */}
       <motion.div
         className="relative z-10 w-full max-w-4xl mx-auto px-6 flex flex-col items-center justify-center text-center"
         style={{ y: contentY, opacity }}
       >
         {/* Status badge */}
         <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] mb-8 backdrop-blur-md"
+          className="inline-flex items-center gap-2.5 px-4 py-2 border border-brown-200 dark:border-brown-700 mb-10 rounded-[2px]"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5 }}
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
-          <span className="text-sm font-light text-slate-300 tracking-wide">{personalInfo.statusBadge}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-brown-400 dark:bg-brown-300 animate-pulse" />
+          <span className="text-xs text-brown-400 dark:text-brown-500 tracking-[0.16em] uppercase">
+            {personalInfo.statusBadge}
+          </span>
         </motion.div>
+
+        {/* Gold rule — draws in */}
+        <motion.div
+          className="h-px bg-gold dark:bg-gold-dark mb-8"
+          initial={{ width: 0 }}
+          animate={{ width: 40 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+        />
 
         {/* Name */}
         <motion.h1
-          className="text-5xl sm:text-7xl font-extrabold text-white mb-3 tracking-tight leading-tight"
-          {...fadeUp(0)}
+          className="text-5xl sm:text-[76px] leading-[1.05] font-display font-normal text-brown-900 dark:text-cream mb-5 tracking-tight"
+          {...fadeUp(0.15)}
         >
-          {personalInfo.name.split(" ").slice(0, 2).join(" ")}{" "}
-          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-            {personalInfo.name.split(" ").slice(2).join(" ")}
-          </span>
+          {personalInfo.name}
         </motion.h1>
+
+        {/* Role — display italic */}
+        <motion.p
+          className="font-display italic text-xl sm:text-2xl text-brown-400 dark:text-brown-300 mb-6 tracking-wide"
+          {...fadeUp(0.25)}
+        >
+          Software Engineer
+        </motion.p>
 
         {/* Tagline */}
         <motion.p
-          className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-12 leading-relaxed font-light"
-          {...fadeUp(0.2)}
+          className="text-sm sm:text-base text-brown-500 dark:text-brown-600 max-w-xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
+          {...fadeUp(0.3)}
         >
           {personalInfo.tagline}
         </motion.p>
@@ -78,12 +74,10 @@ export default function HeroSection() {
           {...fadeUp(0.4)}
         >
           <motion.button
-            onClick={() =>
-              document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-slate-200 transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+            className="px-8 py-3.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg text-xs font-medium tracking-[0.12em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
             View My Work
           </motion.button>
@@ -91,21 +85,19 @@ export default function HeroSection() {
           <motion.a
             href={personalInfo.resumePath}
             download
-            className="flex items-center gap-2 px-8 py-3.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-semibold hover:bg-indigo-500/25 hover:border-indigo-500/50 transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-8 py-3.5 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 text-xs font-medium tracking-[0.12em] uppercase rounded-[2px] hover:border-brown-500 dark:hover:border-brown-500 transition-colors duration-300"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3.5 h-3.5" />
             Download Resume
           </motion.a>
 
           <motion.button
-            onClick={() =>
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="px-8 py-3.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-white font-semibold hover:bg-white/[0.1] backdrop-blur-sm transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+            className="px-8 py-3.5 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 text-xs font-medium tracking-[0.12em] uppercase rounded-[2px] hover:border-brown-500 dark:hover:border-brown-500 transition-colors duration-300"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
             Get In Touch
           </motion.button>
@@ -113,7 +105,7 @@ export default function HeroSection() {
 
         {/* Social links */}
         <motion.div
-          className="flex items-center justify-center gap-5"
+          className="flex items-center justify-center gap-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
@@ -126,9 +118,9 @@ export default function HeroSection() {
             <motion.a
               key={label}
               href={href}
-              className="p-3 rounded-full bg-white/[0.05] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] hover:border-white/20 transition-all duration-300 backdrop-blur-sm"
+              className="p-3 border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 hover:text-brown-800 dark:hover:text-cream hover:border-brown-400 dark:hover:border-brown-500 transition-all duration-300 rounded-[2px]"
               aria-label={label}
-              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               <Icon className="w-5 h-5" />
@@ -140,10 +132,10 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        animate={{ y: [0, 10, 0] }}
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ArrowDown className="w-5 h-5 text-slate-600" />
+        <ArrowDown className="w-4 h-4 text-brown-300 dark:text-brown-700" />
       </motion.div>
     </section>
   );
