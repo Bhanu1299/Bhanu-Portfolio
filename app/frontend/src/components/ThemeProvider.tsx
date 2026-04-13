@@ -1,28 +1,37 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+
+type Theme = "light" | "dark";
 
 interface ThemeContextType {
-  theme: "dark";
+  theme: Theme;
+  toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: "dark" });
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "light",
+  toggleTheme: () => {},
+});
 
 export const useTheme = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Always enforce dark mode
+  const [theme, setTheme] = useState<Theme>(() => {
+    const stored = localStorage.getItem("portfolio-theme");
+    return stored === "dark" ? "dark" : "light";
+  });
+
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add("dark");
-    root.classList.remove("light");
-  }, []);
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+    localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => (t === "light" ? "dark" : "light"));
 
   return (
-    <ThemeContext.Provider value={{ theme: "dark" }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-}
-
-export function useBulbPosition() {
-  return useContext(ThemeContext);
 }
