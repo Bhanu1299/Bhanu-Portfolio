@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles, Download } from "lucide-react";
+import { Menu, X, Download, Sparkles } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -25,22 +26,21 @@ export default function Navbar() {
 
   const scrollTo = (href: string) => {
     setIsMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
-      {/* Scroll Progress Bar */}
+      {/* Scroll progress — gold */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gold dark:bg-gold-dark z-[60] origin-left"
         style={{ scaleX }}
       />
 
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#0A0A0F]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-indigo-500/5 theme-nav-scrolled"
+            ? "bg-parchment/90 dark:bg-sepia-bg/90 border-b border-brown-200/60 dark:border-brown-700/60 shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -48,9 +48,9 @@ export default function Navbar() {
           {/* Logo */}
           <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-lg font-bold text-white tracking-tight hover:text-indigo-400 transition-colors theme-text-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="font-display text-lg text-brown-900 dark:text-cream hover:text-brown-600 dark:hover:text-brown-200 transition-colors"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             {personalInfo.name.split(" ").slice(0, 2).join(" ")}
           </motion.button>
@@ -61,56 +61,62 @@ export default function Navbar() {
               <motion.button
                 key={link.label}
                 onClick={() => scrollTo(link.href)}
-                className="text-sm text-slate-400 hover:text-white transition-colors duration-300 relative group theme-text-nav"
-                initial={{ opacity: 0, y: -10 }}
+                className="text-xs text-brown-400 dark:text-brown-600 hover:text-brown-900 dark:hover:text-cream transition-colors tracking-[0.1em] uppercase relative group"
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-violet-500 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold dark:bg-gold-dark group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
 
-            {/* Download Resume */}
+            {/* Resume */}
             <motion.a
               href={personalInfo.resumePath}
               download
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/25 hover:border-indigo-500/50 transition-all text-xs font-medium"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:border-brown-400 dark:hover:border-brown-500 transition-all text-xs tracking-[0.08em] uppercase rounded-[2px]"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              transition={{ delay: 0.45 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               <Download className="w-3 h-3" />
               Resume
             </motion.a>
 
+            {/* Open to work */}
             <motion.div
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+              className="flex items-center gap-2 px-3 py-1.5 border border-brown-200 dark:border-brown-700 rounded-[2px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.5 }}
             >
-              <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
-              <span className="text-xs font-medium text-emerald-400">Open to Work</span>
+              <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
+              <span className="text-xs text-brown-500 dark:text-brown-400 tracking-[0.08em]">Open to Work</span>
             </motion.div>
+
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="md:hidden text-white p-2 theme-text-primary"
-          >
-            {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="text-brown-500 dark:text-brown-400 p-2"
+            >
+              {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileOpen && (
           <motion.div
-            className="md:hidden bg-[#0A0A0F]/95 backdrop-blur-xl border-b border-white/[0.06] theme-nav-mobile"
-            initial={{ opacity: 0, y: -10 }}
+            className="md:hidden bg-parchment/97 dark:bg-sepia-bg/97 border-b border-brown-200/60 dark:border-brown-700/60"
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
           >
@@ -119,26 +125,23 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="text-left text-slate-300 hover:text-white transition-colors py-2 theme-text-nav"
+                  className="text-left text-sm text-brown-500 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream transition-colors py-1.5 tracking-[0.08em] uppercase"
                 >
                   {link.label}
                 </button>
               ))}
-
-              {/* Download Resume — mobile */}
               <a
                 href={personalInfo.resumePath}
                 download
-                className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/25 transition-all text-sm font-medium w-fit"
+                className="flex items-center gap-2 px-3.5 py-2 border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 transition-all text-sm w-fit rounded-[2px] tracking-[0.08em] uppercase"
                 onClick={() => setIsMobileOpen(false)}
               >
                 <Download className="w-3.5 h-3.5" />
                 Download Resume
               </a>
-
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 w-fit">
-                <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
-                <span className="text-xs font-medium text-emerald-400">Open to Work</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 border border-brown-200 dark:border-brown-700 w-fit rounded-[2px]">
+                <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
+                <span className="text-xs text-brown-500 dark:text-brown-400 tracking-[0.08em]">Open to Work</span>
               </div>
             </div>
           </motion.div>
