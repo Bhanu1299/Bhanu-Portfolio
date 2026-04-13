@@ -1,12 +1,32 @@
+import React from "react";
 import { Code2, Cloud, Brain, Database, Terminal, Globe } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import Card3D from "./Card3D";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { skills, stats as rawStats, personalInfo } from "../data/portfolio";
 
 const statIcons = [Code2, Cloud, Brain, Database, Terminal, Globe];
 const stats = rawStats.map((s, i) => ({ ...s, icon: statIcons[i] }));
+
+function SectionHeader({ label, title }: { label: string; title: React.ReactNode }) {
+  return (
+    <div className="text-center mb-16">
+      <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+        {label}
+      </span>
+      <motion.div
+        className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+        initial={{ width: 0 }}
+        whileInView={{ width: 40 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      />
+      <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
+        {title}
+      </h2>
+    </div>
+  );
+}
 
 function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef(null);
@@ -15,7 +35,7 @@ function AnimatedCounter({ value }: { value: string }) {
   return (
     <motion.div
       ref={ref}
-      className="text-2xl font-bold text-white theme-text-primary"
+      className="text-2xl font-display text-brown-900 dark:text-cream"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -27,40 +47,24 @@ function AnimatedCounter({ value }: { value: string }) {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-24 px-6 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[150px] theme-section-glow" />
-
+    <section id="about" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-6xl mx-auto relative">
-        {/* Section Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-indigo-400 tracking-widest uppercase">
-              About Me
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mt-3 theme-text-primary">
-              Turning Ideas Into{" "}
-              <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                Reality
-              </span>
-            </h2>
-          </div>
+          <SectionHeader label="About Me" title="Turning Ideas Into Reality" />
         </ScrollReveal>
 
         {/* Bio */}
         <ScrollReveal delay={0.1}>
           <div className="max-w-3xl mx-auto mb-16">
-            <Card3D className="group" intensity={8}>
-              <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:border-indigo-500/20 transition-all duration-500 theme-card space-y-4">
-                {personalInfo.bio.map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="text-slate-300 leading-relaxed text-lg theme-text-secondary [&_strong]:text-white [&_strong]:font-semibold"
-                    dangerouslySetInnerHTML={{ __html: paragraph }}
-                  />
-                ))}
-              </div>
-            </Card3D>
+            <div className="p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/50 dark:hover:border-brown-600 transition-all duration-500 bg-white/40 dark:bg-white/[0.02] space-y-4 rounded-[2px]">
+              {personalInfo.bio.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-brown-500 dark:text-brown-400 leading-relaxed text-base [&_strong]:text-brown-900 dark:[&_strong]:text-cream [&_strong]:font-semibold"
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
+              ))}
+            </div>
           </div>
         </ScrollReveal>
 
@@ -68,18 +72,13 @@ export default function AboutSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
           {stats.map(({ icon: Icon, value, label }, i) => (
             <ScrollReveal key={label} delay={i * 0.08} direction={i % 2 === 0 ? "up" : "down"}>
-              <Card3D className="group h-full" intensity={12}>
-                <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center hover:bg-white/[0.06] hover:border-indigo-500/20 transition-all duration-300 h-full theme-card">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Icon className="w-5 h-5 text-indigo-400 mx-auto mb-2" />
-                  </motion.div>
-                  <AnimatedCounter value={value} />
-                  <div className="text-xs text-slate-500 mt-1 theme-text-muted">{label}</div>
-                </div>
-              </Card3D>
+              <div className="p-5 border border-brown-200/60 dark:border-brown-700 text-center hover:border-gold/50 dark:hover:border-brown-600 transition-all duration-300 h-full bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                  <Icon className="w-5 h-5 text-gold dark:text-gold-dark mx-auto mb-2" />
+                </motion.div>
+                <AnimatedCounter value={value} />
+                <div className="text-xs text-brown-400 dark:text-brown-600 mt-1">{label}</div>
+              </div>
             </ScrollReveal>
           ))}
         </div>
@@ -87,40 +86,29 @@ export default function AboutSection() {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {skills.map((group, i) => (
-            <ScrollReveal
-              key={group.category}
-              delay={i * 0.1}
-              direction={i < 3 ? "left" : "right"}
-            >
-              <Card3D className="group h-full" intensity={10}>
-                <div className="p-6 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-300 h-full theme-card">
-                  <div className="flex items-center gap-3 mb-4">
-                    <motion.div
-                      className={`w-3 h-3 rounded-full bg-gradient-to-r ${group.color}`}
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                    />
-                    <h3 className="text-sm font-semibold text-white tracking-wide uppercase theme-text-primary">
-                      {group.category}
-                    </h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((item, j) => (
-                      <motion.span
-                        key={item}
-                        className="px-3 py-1.5 text-xs font-medium rounded-full bg-white/[0.05] text-slate-300 border border-white/[0.06] hover:bg-white/[0.1] hover:text-white transition-colors cursor-default theme-badge-tag"
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: j * 0.05 }}
-                      >
-                        {item}
-                      </motion.span>
-                    ))}
-                  </div>
+            <ScrollReveal key={group.category} delay={i * 0.1} direction={i < 3 ? "left" : "right"}>
+              <div className="p-6 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-300 h-full bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-px h-4 bg-gold dark:bg-gold-dark" />
+                  <h3 className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.14em] uppercase">
+                    {group.category}
+                  </h3>
                 </div>
-              </Card3D>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item, j) => (
+                    <motion.span
+                      key={item}
+                      className="px-3 py-1.5 text-xs border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:border-brown-400 dark:hover:border-brown-500 hover:text-brown-800 dark:hover:text-cream transition-colors cursor-default rounded-[2px]"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: j * 0.04 }}
+                    >
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
             </ScrollReveal>
           ))}
         </div>
