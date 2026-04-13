@@ -15,11 +15,13 @@ export default {
     container: {
       center: true,
       padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
+      screens: { '2xl': '1400px' },
     },
     extend: {
+      fontFamily: {
+        display: ['"DM Serif Display"', 'Georgia', 'serif'],
+        sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -64,6 +66,24 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        parchment: '#EDE8DF',
+        'sepia-bg': '#14100C',
+        cream: '#d4c8b8',
+        gold: {
+          DEFAULT: '#c9a96e',
+          dark: '#9a8060',
+        },
+        brown: {
+          100: '#d4c8b8',
+          200: '#b09070',
+          300: '#9a8060',
+          400: '#8a7060',
+          500: '#6b5a4a',
+          600: '#5e5040',
+          700: '#4a3828',
+          800: '#3d2212',
+          900: '#1f1710',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -72,20 +92,12 @@ export default {
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
