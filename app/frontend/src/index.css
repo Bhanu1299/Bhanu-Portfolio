@@ -45,7 +45,7 @@
 /* ===== CSS DESIGN TOKENS ===== */
 @layer base {
   :root {
-    --background:          38 25% 88%;
+    --background:          39 28% 90%;   /* #EDE8DF */
     --foreground:          28 32%  9%;
     --card:                 0  0% 100%;
     --card-foreground:     28 32%  9%;
@@ -61,8 +61,8 @@
     --accent-foreground:   28 32%  9%;
     --destructive:          0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border:              27 28% 56%;
-    --input:               27 28% 56%;
+    --border:              30 29% 56%;   /* #b09070 */
+    --input:               30 29% 56%;
     --ring:                37 45% 61%;
     --radius:              0.125rem;
     --sidebar-background:  38 25% 85%;
@@ -77,7 +77,7 @@
 
   .dark {
     --background:          30 25%  6%;
-    --foreground:          37 18% 78%;
+    --foreground:          34 25% 78%;   /* #d4c8b8 */
     --card:                30 25%  6%;
     --card-foreground:     37 18% 78%;
     --popover:             30 25%  6%;
@@ -87,7 +87,7 @@
     --secondary:           27 30% 14%;
     --secondary-foreground: 37 18% 78%;
     --muted:               27 30% 14%;
-    --muted-foreground:    30 22% 49%;
+    --muted-foreground:    32 19% 31%;   /* #5e5040 */
     --accent:              30 22% 49%;
     --accent-foreground:   30 25%  6%;
     --destructive:          0 62% 30%;
@@ -112,13 +112,15 @@
 }
 
 /* ===== THEME TRANSITIONS ===== */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-}
+@layer base {
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
 
-.no-transition,
-.no-transition * {
-  transition: none !important;
+  .no-transition,
+  .no-transition * {
+    transition: none !important;
+  }
 }
