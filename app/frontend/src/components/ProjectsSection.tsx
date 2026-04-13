@@ -51,13 +51,13 @@ function ProjectCard({
             {project.techStack.slice(0, 4).map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 text-[10px] border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 rounded-[2px]"
+                className="px-2.5 py-1 text-xs border border-brown-200 dark:border-brown-700 text-brown-600 dark:text-brown-300 rounded-[2px]"
               >
                 {tag}
               </span>
             ))}
             {project.techStack.length > 4 && (
-              <span className="px-2.5 py-1 text-[10px] text-brown-400 dark:text-brown-600">
+              <span className="px-2.5 py-1 text-xs text-brown-500 dark:text-brown-400">
                 +{project.techStack.length - 4}
               </span>
             )}
@@ -90,13 +90,13 @@ export default function ProjectsSection() {
         {/* Section header */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+            <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
               Portfolio
             </span>
             <motion.div
-              className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+              className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
               initial={{ width: 0 }}
-              whileInView={{ width: 40 }}
+              whileInView={{ width: 56 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             />
@@ -125,7 +125,7 @@ export default function ProjectsSection() {
         {other.length > 0 && (
           <>
             <ScrollReveal>
-              <p className="text-xs text-brown-400 dark:text-brown-600 uppercase tracking-[0.14em] mb-5 text-center">
+              <p className="text-xs text-brown-500 dark:text-brown-400 uppercase tracking-[0.14em] mb-5 text-center">
                 More Projects
               </p>
             </ScrollReveal>
@@ -177,7 +177,7 @@ export default function ProjectsSection() {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 text-brown-400 dark:text-brown-600 hover:text-brown-800 dark:hover:text-cream transition-colors"
+                  className="p-2 text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream transition-colors"
                   aria-label="Close"
                 >
                   <X className="w-5 h-5" />
@@ -191,14 +191,14 @@ export default function ProjectsSection() {
                 </p>
 
                 <div>
-                  <p className="text-xs text-brown-400 dark:text-brown-600 uppercase tracking-[0.12em] mb-2">
+                  <p className="text-xs text-brown-500 dark:text-brown-400 uppercase tracking-[0.12em] mb-2">
                     Tech Stack
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.techStack.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 text-[11px] border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]"
+                        className="px-2.5 py-1 text-xs border border-brown-200 dark:border-brown-700 text-brown-700 dark:text-brown-300 rounded-[2px]"
                       >
                         {tag}
                       </span>

@@ -29,10 +29,10 @@ function TimelineCard({
           </h3>
           <p className="text-brown-500 dark:text-brown-400 text-sm mt-0.5">{job.role}</p>
           <div className="flex flex-wrap items-center gap-2 mt-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 rounded-[2px]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-medium border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
               {job.dateRange}
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-medium border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 rounded-[2px]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-medium border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
               <MapPin className="w-2.5 h-2.5" />
               {job.location}
             </span>
@@ -43,7 +43,7 @@ function TimelineCard({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="flex-shrink-0 mt-1"
         >
-          <ChevronDown className="w-4 h-4 text-brown-400 dark:text-brown-600" />
+          <ChevronDown className="w-4 h-4 text-brown-400 dark:text-brown-400" />
         </motion.div>
       </div>
 
@@ -146,13 +146,13 @@ export default function ExperienceSection() {
         {/* Section header */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+            <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
               Experience
             </span>
             <motion.div
-              className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+              className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
               initial={{ width: 0 }}
-              whileInView={{ width: 40 }}
+              whileInView={{ width: 56 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             />

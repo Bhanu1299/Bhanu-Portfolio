@@ -22,13 +22,13 @@ export default function ContactSection() {
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+              <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
                 Contact
               </span>
               <motion.div
-                className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+                className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
                 initial={{ width: 0 }}
-                whileInView={{ width: 40 }}
+                whileInView={{ width: 56 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               />
@@ -67,7 +67,7 @@ export default function ContactSection() {
                           <Icon className="w-5 h-5 text-gold dark:text-gold-dark" />
                         </div>
                         <div>
-                          <div className="text-xs text-brown-400 dark:text-brown-600 mb-0.5 tracking-[0.08em] uppercase">{label}</div>
+                          <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">{label}</div>
                           <div className="text-sm">{value}</div>
                         </div>
                       </motion.a>
@@ -81,7 +81,7 @@ export default function ContactSection() {
                         <MapPin className="w-5 h-5 text-gold dark:text-gold-dark" />
                       </div>
                       <div>
-                        <div className="text-xs text-brown-400 dark:text-brown-600 mb-0.5 tracking-[0.08em] uppercase">Location</div>
+                        <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">Location</div>
                         <div className="text-sm">{personalInfo.location}</div>
                       </div>
                     </motion.div>
@@ -181,7 +181,7 @@ export default function ContactSection() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-brown-400 dark:text-brown-600">
+          <p className="text-sm text-brown-400 dark:text-brown-400">
             {personalInfo.footerCopyright}{" "}
             <Heart className="w-3 h-3 inline text-gold dark:text-gold-dark" />
           </p>
@@ -194,7 +194,7 @@ export default function ContactSection() {
               <motion.a
                 key={label}
                 href={href}
-                className="text-brown-400 dark:text-brown-600 hover:text-brown-800 dark:hover:text-cream transition-colors"
+                className="text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream transition-colors"
                 aria-label={label}
                 whileHover={{ scale: 1.2, y: -2 }}
               >

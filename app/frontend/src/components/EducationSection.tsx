@@ -31,14 +31,14 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                   {edu.degree}
                 </h3>
                 <p className="text-brown-500 dark:text-brown-400 text-sm mt-1">{edu.school}</p>
-                <p className="text-xs text-brown-400 dark:text-brown-600 mt-0.5">Class of {edu.year}</p>
+                <p className="text-xs text-brown-500 dark:text-brown-400 mt-0.5">Class of {edu.year}</p>
               </div>
               <motion.div
                 animate={{ rotate: expanded ? 180 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="flex-shrink-0 mt-1"
               >
-                <ChevronDown className="w-4 h-4 text-brown-400 dark:text-brown-600" />
+                <ChevronDown className="w-4 h-4 text-brown-400 dark:text-brown-400" />
               </motion.div>
             </div>
           </div>
@@ -59,8 +59,8 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                 {/* Coursework */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <BookOpen className="w-3.5 h-3.5 text-brown-400 dark:text-brown-600" />
-                    <span className="text-xs font-semibold text-brown-400 dark:text-brown-600 uppercase tracking-wider">Coursework</span>
+                    <BookOpen className="w-3.5 h-3.5 text-brown-500 dark:text-brown-400" />
+                    <span className="text-xs font-semibold text-brown-500 dark:text-brown-400 uppercase tracking-wider">Coursework</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {edu.coursework.map((course, j) => (
@@ -69,7 +69,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: j * 0.04 }}
-                        className="px-2.5 py-1 text-[11px] font-medium rounded-[2px] border border-brown-200 dark:border-brown-700 text-gold dark:text-gold-dark"
+                        className="px-2.5 py-1 text-xs font-medium rounded-[2px] border border-brown-200 dark:border-brown-700 text-gold dark:text-gold-dark"
                       >
                         {course}
                       </motion.span>
@@ -80,8 +80,8 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                 {/* Activities */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <Users className="w-3.5 h-3.5 text-brown-400 dark:text-brown-600" />
-                    <span className="text-xs font-semibold text-brown-400 dark:text-brown-600 uppercase tracking-wider">Activities</span>
+                    <Users className="w-3.5 h-3.5 text-brown-500 dark:text-brown-400" />
+                    <span className="text-xs font-semibold text-brown-500 dark:text-brown-400 uppercase tracking-wider">Activities</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {edu.activities.map((activity, j) => (
@@ -90,7 +90,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 + j * 0.04 }}
-                        className="px-2.5 py-1 text-[11px] font-medium rounded-[2px] bg-white/40 dark:bg-white/[0.03] text-brown-500 dark:text-brown-400 border border-brown-200/60 dark:border-brown-700"
+                        className="px-2.5 py-1 text-xs font-medium rounded-[2px] bg-white/40 dark:bg-white/[0.03] text-brown-600 dark:text-brown-300 border border-brown-200/60 dark:border-brown-700"
                       >
                         {activity}
                       </motion.span>
@@ -104,7 +104,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
       </div>
 
       {/* Click hint */}
-      <div className={`px-8 pb-4 text-[10px] text-brown-400 dark:text-brown-600 transition-opacity duration-300 ${expanded ? "opacity-0 h-0 pb-0 overflow-hidden" : "opacity-100"}`}>
+      <div className={`px-8 pb-4 text-[10px] text-brown-400 dark:text-brown-500 transition-opacity duration-300 ${expanded ? "opacity-0 h-0 pb-0 overflow-hidden" : "opacity-100"}`}>
         Click to expand
       </div>
     </motion.div>
@@ -118,13 +118,13 @@ export default function EducationSection() {
         {/* Section header */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+            <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
               Education
             </span>
             <motion.div
-              className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+              className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
               initial={{ width: 0 }}
-              whileInView={{ width: 40 }}
+              whileInView={{ width: 56 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             />

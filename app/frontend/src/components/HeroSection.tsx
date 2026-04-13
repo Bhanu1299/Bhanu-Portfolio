@@ -38,9 +38,9 @@ export default function HeroSection() {
 
         {/* Gold rule — draws in */}
         <motion.div
-          className="h-px bg-gold dark:bg-gold-dark mb-8"
+          className="h-[2px] bg-gold dark:bg-gold-dark mb-8"
           initial={{ width: 0 }}
-          animate={{ width: 40 }}
+          animate={{ width: 56 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         />
 
@@ -62,7 +62,7 @@ export default function HeroSection() {
 
         {/* Tagline */}
         <motion.p
-          className="text-sm sm:text-base text-brown-500 dark:text-brown-600 max-w-xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
+          className="text-sm sm:text-base text-brown-500 dark:text-brown-400 max-w-xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           {...fadeUp(0.3)}
         >
           {personalInfo.tagline}
@@ -118,7 +118,7 @@ export default function HeroSection() {
             <motion.a
               key={label}
               href={href}
-              className="p-3 border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-600 hover:text-brown-800 dark:hover:text-cream hover:border-brown-400 dark:hover:border-brown-500 transition-all duration-300 rounded-[2px]"
+              className="p-3 border border-brown-200 dark:border-brown-700 text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-400 dark:hover:border-brown-500 transition-all duration-300 rounded-[2px]"
               aria-label={label}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

@@ -11,13 +11,13 @@ const stats = rawStats.map((s, i) => ({ ...s, icon: statIcons[i] }));
 function SectionHeader({ label, title }: { label: string; title: React.ReactNode }) {
   return (
     <div className="text-center mb-16">
-      <span className="text-xs font-medium text-brown-400 dark:text-brown-600 tracking-[0.18em] uppercase">
+      <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
         {label}
       </span>
       <motion.div
-        className="h-px bg-gold dark:bg-gold-dark mx-auto my-3"
+        className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
         initial={{ width: 0 }}
-        whileInView={{ width: 40 }}
+        whileInView={{ width: 56 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       />
@@ -77,7 +77,7 @@ export default function AboutSection() {
                   <Icon className="w-5 h-5 text-gold dark:text-gold-dark mx-auto mb-2" />
                 </motion.div>
                 <AnimatedCounter value={value} />
-                <div className="text-xs text-brown-400 dark:text-brown-600 mt-1">{label}</div>
+                <div className="text-xs text-brown-500 dark:text-brown-400 mt-1">{label}</div>
               </div>
             </ScrollReveal>
           ))}
@@ -98,7 +98,7 @@ export default function AboutSection() {
                   {group.items.map((item, j) => (
                     <motion.span
                       key={item}
-                      className="px-3 py-1.5 text-xs border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:border-brown-400 dark:hover:border-brown-500 hover:text-brown-800 dark:hover:text-cream transition-colors cursor-default rounded-[2px]"
+                      className="px-3.5 py-2 text-sm border border-brown-200 dark:border-brown-700 text-brown-700 dark:text-brown-300 hover:border-brown-400 dark:hover:border-brown-500 hover:text-brown-900 dark:hover:text-cream transition-colors cursor-default rounded-[2px]"
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}

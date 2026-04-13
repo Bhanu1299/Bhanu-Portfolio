@@ -61,7 +61,7 @@ export default function Navbar() {
               <motion.button
                 key={link.label}
                 onClick={() => scrollTo(link.href)}
-                className="text-xs text-brown-400 dark:text-brown-600 hover:text-brown-900 dark:hover:text-cream transition-colors tracking-[0.1em] uppercase relative group"
+                className="text-xs text-brown-400 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream transition-colors tracking-[0.1em] uppercase relative group"
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
@@ -75,7 +75,7 @@ export default function Navbar() {
             <motion.a
               href={personalInfo.resumePath}
               download
-              className="flex items-center gap-1.5 px-3.5 py-1.5 border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:border-brown-400 dark:hover:border-brown-500 transition-all text-xs tracking-[0.08em] uppercase rounded-[2px]"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all text-xs tracking-[0.08em] uppercase rounded-[2px]"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45 }}
@@ -88,13 +88,13 @@ export default function Navbar() {
 
             {/* Open to work */}
             <motion.div
-              className="flex items-center gap-2 px-3 py-1.5 border border-brown-200 dark:border-brown-700 rounded-[2px]"
+              className="flex items-center gap-2 px-3 py-1.5 border border-gold dark:border-gold-dark bg-gold/10 dark:bg-gold-dark/10 rounded-[2px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
             >
               <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
-              <span className="text-xs text-brown-500 dark:text-brown-400 tracking-[0.08em]">Open to Work</span>
+              <span className="text-xs text-brown-800 dark:text-cream tracking-[0.08em]">Open to Work</span>
             </motion.div>
 
             <ThemeToggle />
@@ -133,15 +133,15 @@ export default function Navbar() {
               <a
                 href={personalInfo.resumePath}
                 download
-                className="flex items-center gap-2 px-3.5 py-2 border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 transition-all text-sm w-fit rounded-[2px] tracking-[0.08em] uppercase"
+                className="flex items-center gap-2 px-3.5 py-2 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all text-sm w-fit rounded-[2px] tracking-[0.08em] uppercase"
                 onClick={() => setIsMobileOpen(false)}
               >
                 <Download className="w-3.5 h-3.5" />
                 Download Resume
               </a>
-              <div className="flex items-center gap-2 px-3 py-1.5 border border-brown-200 dark:border-brown-700 w-fit rounded-[2px]">
+              <div className="flex items-center gap-2 px-3 py-1.5 border border-gold dark:border-gold-dark bg-gold/10 dark:bg-gold-dark/10 w-fit rounded-[2px]">
                 <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
-                <span className="text-xs text-brown-500 dark:text-brown-400 tracking-[0.08em]">Open to Work</span>
+                <span className="text-xs text-brown-800 dark:text-cream tracking-[0.08em]">Open to Work</span>
               </div>
             </div>
           </motion.div>
