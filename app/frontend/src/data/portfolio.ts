@@ -37,43 +37,101 @@ export const stats = [
 export const skills = [
   {
     category: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "Java", "SQL", "C++"],
     color: "from-indigo-500 to-blue-500",
+    items: [
+      { name: "Python", pct: 92 },
+      { name: "TypeScript", pct: 85 },
+      { name: "JavaScript", pct: 88 },
+      { name: "Java", pct: 65 },
+      { name: "SQL", pct: 82 },
+      { name: "C++", pct: 55 },
+    ],
   },
   {
     category: "Frontend",
-    items: ["React.js", "Next.js", "React Native", "Tailwind CSS", "HTML", "CSS", "UI/UX"],
     color: "from-violet-500 to-purple-500",
+    items: [
+      { name: "React.js", pct: 88 },
+      { name: "Next.js", pct: 72 },
+      { name: "React Native", pct: 68 },
+      { name: "Tailwind CSS", pct: 85 },
+      { name: "HTML", pct: 90 },
+      { name: "CSS", pct: 85 },
+      { name: "UI/UX", pct: 70 },
+    ],
   },
   {
     category: "Backend & APIs",
-    items: ["Node.js", "FastAPI", "Microservices", "REST APIs", "Authentication", "Async Programming"],
     color: "from-cyan-500 to-teal-500",
+    items: [
+      { name: "Node.js", pct: 85 },
+      { name: "FastAPI", pct: 88 },
+      { name: "Microservices", pct: 75 },
+      { name: "REST APIs", pct: 90 },
+      { name: "Authentication", pct: 80 },
+      { name: "Async Programming", pct: 82 },
+    ],
   },
   {
     category: "Cloud & DevOps",
-    items: ["AWS (Lambda, ECS)", "Docker", "CI/CD (GitHub Actions)", "Cloud Computing", "Linux"],
     color: "from-emerald-500 to-green-500",
+    items: [
+      { name: "AWS (Lambda, ECS)", pct: 82 },
+      { name: "Docker", pct: 85 },
+      { name: "CI/CD (GitHub Actions)", pct: 82 },
+      { name: "Cloud Computing", pct: 78 },
+      { name: "Linux", pct: 75 },
+    ],
   },
   {
     category: "GenAI & LLMs",
-    items: ["LangChain", "LangGraph", "RAG", "Prompt Engineering", "OpenAI API", "Hugging Face"],
     color: "from-pink-500 to-rose-500",
+    items: [
+      { name: "LangChain", pct: 90 },
+      { name: "LangGraph", pct: 88 },
+      { name: "RAG", pct: 92 },
+      { name: "Prompt Engineering", pct: 88 },
+      { name: "OpenAI API", pct: 90 },
+      { name: "Hugging Face", pct: 72 },
+    ],
   },
   {
     category: "ML & Data",
-    items: ["PyTorch", "TensorFlow", "Scikit-learn", "FAISS", "Pinecone", "OpenCV", "Computer Vision", "Predictive Analytics"],
     color: "from-amber-500 to-orange-500",
+    items: [
+      { name: "PyTorch", pct: 78 },
+      { name: "TensorFlow", pct: 72 },
+      { name: "Scikit-learn", pct: 80 },
+      { name: "FAISS", pct: 82 },
+      { name: "Pinecone", pct: 78 },
+      { name: "OpenCV", pct: 72 },
+      { name: "Computer Vision", pct: 75 },
+      { name: "Predictive Analytics", pct: 80 },
+    ],
   },
   {
     category: "Databases",
-    items: ["PostgreSQL", "MongoDB", "Spark", "Kafka", "ACID Transactions"],
     color: "from-blue-500 to-indigo-500",
+    items: [
+      { name: "PostgreSQL", pct: 88 },
+      { name: "MongoDB", pct: 80 },
+      { name: "Spark", pct: 75 },
+      { name: "Kafka", pct: 72 },
+      { name: "ACID Transactions", pct: 82 },
+    ],
   },
   {
     category: "Tools & Platforms",
-    items: ["Git", "GitHub", "n8n", "Power BI", "Tesseract", "Android Studio", "OOP"],
     color: "from-purple-500 to-pink-500",
+    items: [
+      { name: "Git", pct: 92 },
+      { name: "GitHub", pct: 90 },
+      { name: "n8n", pct: 72 },
+      { name: "Power BI", pct: 70 },
+      { name: "Tesseract", pct: 65 },
+      { name: "Android Studio", pct: 55 },
+      { name: "OOP", pct: 88 },
+    ],
   },
 ];
 
@@ -155,6 +213,13 @@ export const projects = [
     fullDescription:
       "Building a multi-agent system using LangGraph that decomposes job descriptions into structured workflows. Features a planner–executor–critic architecture that iteratively refines resume-JD alignment using cosine similarity and keyword scoring. Implemented tool-calling and scoring loops that reduce manual resume tailoring to a single prompt, automating cover letter generation and feedback refinement end-to-end.",
     techStack: ["LangGraph", "LangChain", "Python", "FastAPI", "Prompt Engineering"],
+    techPercentages: [
+      { name: "LangGraph", pct: 35 },
+      { name: "LangChain", pct: 25 },
+      { name: "Python", pct: 25 },
+      { name: "FastAPI", pct: 10 },
+      { name: "Prompt Eng.", pct: 5 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: true,
@@ -165,6 +230,13 @@ export const projects = [
     fullDescription:
       "Designed a visual workflow builder abstracting LLM prompt orchestration, tool-calling, and vector retrieval into configurable pipelines. Improved reliability of long-running workflows by implementing retry logic and exponential backoff to gracefully handle OpenAI rate limits and network failures. Deployed containerized services on AWS ECS/Lambda, achieving scalable and cost-efficient execution without provisioned infrastructure.",
     techStack: ["React.js", "Node.js", "LangChain", "OpenAI API", "AWS ECS/Lambda", "Docker"],
+    techPercentages: [
+      { name: "React.js", pct: 30 },
+      { name: "Node.js", pct: 25 },
+      { name: "LangChain", pct: 20 },
+      { name: "AWS", pct: 15 },
+      { name: "Docker", pct: 10 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: true,
@@ -175,6 +247,13 @@ export const projects = [
     fullDescription:
       "Built a multimodal RAG system capable of indexing PDFs, scanned images, and tables across 1K+ documents. Improved retrieval accuracy approximately 28% over baseline keyword search. Achieved sub-200ms vector retrieval latency on 1K+ indexed documents by benchmarking and tuning FAISS index configuration locally before cloud deployment. Enforced retrieval-constrained generation with confidence thresholds and fallback logic, prioritizing factual reliability over response completeness.",
     techStack: ["Python", "LangChain", "RAG", "FAISS", "Pinecone", "OpenCV", "Tesseract"],
+    techPercentages: [
+      { name: "Python", pct: 35 },
+      { name: "LangChain", pct: 25 },
+      { name: "FAISS", pct: 15 },
+      { name: "OpenCV", pct: 15 },
+      { name: "Tesseract", pct: 10 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: true,
@@ -185,6 +264,12 @@ export const projects = [
     fullDescription:
       "A face mask detection system using machine learning as an effective solution for enforcing face mask policies in public spaces. Analyzes real-time video feed and alerts authorities or denies entry to non-compliant individuals. Built with transfer learning and optimized CNN architectures for edge deployment. Can be adapted for other safety applications and public health monitoring.",
     techStack: ["Python", "PyTorch", "OpenCV", "Computer Vision", "Machine Learning", "TensorFlow"],
+    techPercentages: [
+      { name: "Python", pct: 40 },
+      { name: "PyTorch", pct: 30 },
+      { name: "OpenCV", pct: 20 },
+      { name: "TensorFlow", pct: 10 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: false,
@@ -195,6 +280,12 @@ export const projects = [
     fullDescription:
       "An intelligent lighting infrastructure designed for outdoor illumination in urban areas. Utilizes advanced technologies and automation to improve energy efficiency, reduce costs, and enhance overall functionality. Integrates with smart city systems for traffic management, parking, and security. Features adaptive brightness control, motion sensing, and predictive maintenance. Enables cohesive and interconnected urban infrastructure promoting sustainable city development.",
     techStack: ["Machine Learning", "TensorFlow", "IoT", "Python", "Data Analytics"],
+    techPercentages: [
+      { name: "Python", pct: 40 },
+      { name: "TensorFlow", pct: 30 },
+      { name: "ML", pct: 20 },
+      { name: "IoT", pct: 10 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: false,
@@ -205,6 +296,11 @@ export const projects = [
     fullDescription:
       "Built an AI-driven NGS (Next-Generation Sequencing) pipeline in Python and Java for early-stage clinical prediction, achieving 92% detection accuracy. Applied object-oriented design principles to build a scalable diagnostic system. Contributed to a patent-awarded innovation in healthcare AI.",
     techStack: ["Python", "Java", "Machine Learning", "Data Science", "OOP"],
+    techPercentages: [
+      { name: "Python", pct: 50 },
+      { name: "Java", pct: 30 },
+      { name: "ML", pct: 20 },
+    ],
     githubLink: "#",
     liveLink: "#",
     featured: false,
