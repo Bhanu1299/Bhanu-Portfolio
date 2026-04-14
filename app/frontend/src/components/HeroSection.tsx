@@ -54,16 +54,27 @@ export default function HeroSection() {
 
         {/* Role — display italic */}
         <motion.p
-          className="font-display italic text-xl sm:text-2xl text-brown-400 dark:text-brown-300 mb-6 tracking-wide"
+          className="font-display italic text-xl sm:text-2xl text-brown-400 dark:text-brown-300 mb-5 tracking-wide"
           {...fadeUp(0.25)}
         >
           Software Engineer
         </motion.p>
 
+        {/* Craft line — gold left-bar pull quote */}
+        <motion.div
+          className="flex items-center gap-3 mb-5"
+          {...fadeUp(0.28)}
+        >
+          <div className="w-0.5 h-4 bg-gold dark:bg-gold-dark flex-shrink-0" />
+          <p className="font-display italic text-sm text-brown-400 dark:text-brown-500 tracking-wide">
+            Shipping production-grade systems
+          </p>
+        </motion.div>
+
         {/* Tagline */}
         <motion.p
           className="text-sm sm:text-base text-brown-500 dark:text-brown-400 max-w-xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
-          {...fadeUp(0.3)}
+          {...fadeUp(0.35)}
         >
           {personalInfo.tagline}
         </motion.p>
