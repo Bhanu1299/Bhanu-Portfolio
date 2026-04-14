@@ -10,9 +10,16 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+    );
+    window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, "_blank");
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 3000);
   };
 
   return (
@@ -52,10 +59,10 @@ export default function ContactSection() {
                   </h3>
                   <div className="space-y-5">
                     {[
-                      { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email", value: personalInfo.email },
-                      { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/bhanuteja1299", external: true },
-                      { href: personalInfo.github, icon: Github, label: "GitHub", value: "github.com/Bhanu1299", external: true },
-                    ].map(({ href, icon: Icon, label, value, external }) => (
+                      { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email", value: personalInfo.email, cta: "Discuss opportunities" },
+                      { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/bhanuteja1299", cta: "Connect with me", external: true },
+                      { href: personalInfo.github, icon: Github, label: "GitHub", value: "github.com/Bhanu1299", cta: "See my work", external: true },
+                    ].map(({ href, icon: Icon, label, value, cta, external }) => (
                       <motion.a
                         key={label}
                         href={href}
@@ -69,6 +76,7 @@ export default function ContactSection() {
                         <div>
                           <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">{label}</div>
                           <div className="text-sm">{value}</div>
+                          <div className="text-xs italic text-brown-300 dark:text-brown-600 mt-0.5">{cta}</div>
                         </div>
                       </motion.a>
                     ))}
@@ -156,7 +164,7 @@ export default function ContactSection() {
                   >
                     {submitted ? (
                       <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring" }}>
-                        Message Sent ✓
+                        Opening email client...
                       </motion.span>
                     ) : (
                       <>
