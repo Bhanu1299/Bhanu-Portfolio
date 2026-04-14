@@ -65,7 +65,6 @@ function SkillCard({ group, delay, direction }: {
         style={{ perspective: 1000 }}
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
-        onClick={() => setFlipped(f => !f)}
       >
         <motion.div
           className="relative w-full h-full"
@@ -111,7 +110,7 @@ function SkillCard({ group, delay, direction }: {
               </h3>
             </div>
             <div className="space-y-3 flex-1">
-              {group.items.map((item) => (
+              {group.items.map((item, j) => (
                 <div key={item.name}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs text-brown-700 dark:text-brown-300 font-medium">{item.name}</span>
@@ -124,7 +123,7 @@ function SkillCard({ group, delay, direction }: {
                       className="h-full bg-brown-600 dark:bg-gold-dark rounded-full"
                       initial={{ width: 0 }}
                       animate={flipped ? { width: `${item.pct}%` } : { width: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 + j * 0.07 }}
                     />
                   </div>
                 </div>

@@ -76,7 +76,7 @@ export default function ContactSection() {
                         <div>
                           <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">{label}</div>
                           <div className="text-sm">{value}</div>
-                          <div className="text-xs italic text-brown-300 dark:text-brown-600 mt-0.5">{cta}</div>
+                          {cta && <div className="text-xs italic text-brown-300 dark:text-brown-400 mt-0.5">{cta}</div>}
                         </div>
                       </motion.a>
                     ))}
