@@ -38,45 +38,59 @@ function getTechColor(tech: string): string {
   return TECH_COLORS[tech] ?? "#9A8A7A";
 }
 
-function TechBar({ techs, compact = false }: { techs: string[]; compact?: boolean }) {
-  const pct = 100 / techs.length;
+type TechPct = { name: string; pct: number };
+
+function TechBar({
+  techs,
+  techPercentages,
+  compact = false,
+}: {
+  techs: string[];
+  techPercentages?: TechPct[];
+  compact?: boolean;
+}) {
+  // Use provided percentages; fall back to equal distribution
+  const resolved: TechPct[] = techPercentages && techPercentages.length > 0
+    ? techPercentages
+    : techs.map((name) => ({ name, pct: Math.round(100 / techs.length) }));
+
   return (
     <div>
       <div className="flex w-full h-1.5 rounded-none overflow-hidden gap-[1px]">
-        {techs.map((tech) => (
+        {resolved.map(({ name, pct }) => (
           <div
-            key={tech}
-            style={{ width: `${pct}%`, backgroundColor: getTechColor(tech) }}
-            title={tech}
+            key={name}
+            style={{ width: `${pct}%`, backgroundColor: getTechColor(name) }}
+            title={`${name} ${pct}%`}
           />
         ))}
       </div>
       {compact ? (
         <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
-          {techs.slice(0, 3).map((tech) => (
-            <span key={tech} className="flex items-center gap-1 text-[10px] text-brown-500 dark:text-brown-400">
+          {resolved.slice(0, 3).map(({ name }) => (
+            <span key={name} className="flex items-center gap-1 text-[10px] text-brown-500 dark:text-brown-400">
               <span
                 className="inline-block w-2 h-2 flex-shrink-0"
-                style={{ backgroundColor: getTechColor(tech) }}
+                style={{ backgroundColor: getTechColor(name) }}
               />
-              {tech}
+              {name}
             </span>
           ))}
-          {techs.length > 3 && (
-            <span className="text-[10px] text-brown-400 dark:text-brown-600">+{techs.length - 3} more</span>
+          {resolved.length > 3 && (
+            <span className="text-[10px] text-brown-400 dark:text-brown-600">+{resolved.length - 3} more</span>
           )}
         </div>
       ) : (
         <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3">
-          {techs.map((tech) => (
-            <span key={tech} className="flex items-center gap-1.5 text-[11px] text-brown-600 dark:text-brown-300">
+          {resolved.map(({ name, pct }) => (
+            <span key={name} className="flex items-center gap-1.5 text-[11px] text-brown-600 dark:text-brown-300">
               <span
                 className="inline-block w-2 h-2 flex-shrink-0"
-                style={{ backgroundColor: getTechColor(tech) }}
+                style={{ backgroundColor: getTechColor(name) }}
               />
-              {tech}
+              {name}
               <span className="text-brown-400 dark:text-brown-600 text-[10px]">
-                {Math.round(100 / techs.length)}%
+                {pct}%
               </span>
             </span>
           ))}
@@ -120,7 +134,7 @@ function ProjectCard({
         </div>
 
         <div>
-          <TechBar techs={project.techStack} compact />
+          <TechBar techs={project.techStack} techPercentages={project.techPercentages} compact />
           <p className="text-[10px] text-brown-300 dark:text-brown-700 tracking-[0.08em] uppercase mt-3">
             Click for details
           </p>
@@ -268,7 +282,7 @@ export default function ProjectsSection() {
                   <p className="text-xs text-brown-500 dark:text-brown-400 uppercase tracking-[0.12em] mb-3">
                     Tech Stack
                   </p>
-                  <TechBar techs={selectedProject.techStack} compact={false} />
+                  <TechBar techs={selectedProject.techStack} techPercentages={selectedProject.techPercentages} compact={false} />
                 </div>
 
                 <div className="flex gap-3 pt-1">

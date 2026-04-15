@@ -20,13 +20,13 @@ export default function SplashScreen({ children }: SplashScreenProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-parchment dark:bg-sepia-bg transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[9999] bg-[#faf0dc] transition-opacity duration-700 ${
         exiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Mountain Animation Background — untouched */}
       <div className="absolute inset-0">
-        <Suspense fallback={<div className="w-full h-full bg-parchment dark:bg-sepia-bg" />}>
+        <Suspense fallback={<div className="w-full h-full bg-[#faf0dc]" />}>
           <GenerativeMountainScene />
         </Suspense>
       </div>
@@ -38,7 +38,7 @@ export default function SplashScreen({ children }: SplashScreenProps) {
       >
         {/* Subtitle — delay 0s */}
         <p
-          className="splash-animate text-gold dark:text-gold-dark text-xs font-light tracking-[0.4em] uppercase"
+          className="splash-animate text-gold text-lg sm:text-xl md:text-2xl font-light tracking-[0.3em] uppercase"
           style={{ animationDelay: '0s' }}
         >
           Hello, I'm Bhanu Teja
@@ -46,11 +46,11 @@ export default function SplashScreen({ children }: SplashScreenProps) {
 
         {/* Heading — delay 0.2s */}
         <h1
-          className="splash-animate text-4xl sm:text-5xl md:text-6xl font-light text-brown-900 dark:text-cream tracking-tight -mt-4"
+          className="splash-animate text-4xl sm:text-5xl md:text-6xl font-light text-brown-800 tracking-tight -mt-4"
           style={{ animationDelay: '0.2s' }}
         >
           Welcome to my{' '}
-          <span className="font-semibold text-gold dark:text-gold-dark">
+          <span className="font-semibold text-gold">
             Portfolio
           </span>
         </h1>
@@ -58,7 +58,7 @@ export default function SplashScreen({ children }: SplashScreenProps) {
         {/* Enter button — delay 0.4s */}
         <button
           onClick={handleEnter}
-          className="splash-animate px-8 py-3 rounded-full border border-gold/60 text-gold dark:text-gold-dark text-sm tracking-[0.25em] uppercase font-light transition-all duration-500 hover:tracking-[0.35em] hover:bg-gold/10 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+          className="splash-animate px-8 py-3 rounded-full border border-gold/60 text-gold text-sm tracking-[0.25em] uppercase font-light transition-all duration-500 hover:tracking-[0.35em] hover:bg-gold/10 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
           style={{ animationDelay: '0.4s' }}
         >
           Enter

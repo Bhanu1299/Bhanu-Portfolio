@@ -27,9 +27,13 @@ export function GenerativeMountainScene() {
     camera.position.set(0, 1.5, 3);
     camera.rotation.x = -0.3;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Always use the warm cream parchment sky — consistent across modes
+    renderer.setClearColor(0xfaf0dc, 1);
+
     currentMount.appendChild(renderer.domElement);
 
     // GEOMETRY
@@ -42,7 +46,7 @@ export function GenerativeMountainScene() {
       uniforms: {
         time: { value: 0 },
         pointLightPosition: { value: new THREE.Vector3(0, 0, 5) },
-        color: { value: new THREE.Color("#7dd3fc") },
+        color: { value: new THREE.Color("#c4956a") },
       },
       vertexShader: `
         uniform float time;
@@ -119,18 +123,22 @@ export function GenerativeMountainScene() {
         uniform vec3 pointLightPosition;
         varying vec3 vNormal;
         varying vec3 vPosition;
-        
+
         void main() {
             vec3 normal = normalize(vNormal);
             vec3 lightDir = normalize(pointLightPosition - vPosition);
-            
-            float diffuse = max(dot(normal, lightDir), 0.0);
-            
-            float fresnel = 1.0 - dot(normal, vec3(0.0, 0.0, 1.0));
-            fresnel = pow(fresnel, 2.0);
-            
-            vec3 finalColor = color * diffuse + color * fresnel * 0.5;
-            
+
+            // Ambient — base colour always visible
+            float ambient = 0.6;
+
+            // Diffuse — light adds warmth on lit faces
+            float diffuse = max(dot(normal, lightDir), 0.0) * 0.5;
+
+            // Fresnel — soft highlight at silhouette edges
+            float fresnel = pow(1.0 - abs(dot(normal, vec3(0.0, 0.0, 1.0))), 2.0) * 0.25;
+
+            vec3 finalColor = color * (ambient + diffuse + fresnel);
+
             gl_FragColor = vec4(finalColor, 1.0);
         }
       `,
@@ -141,7 +149,7 @@ export function GenerativeMountainScene() {
     mesh.rotation.x = -Math.PI / 2;
     scene.add(mesh);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    const pointLight = new THREE.PointLight(0xff9944, 1.4, 100);
     pointLight.position.set(0, 0, 5);
     lightRef.current = pointLight;
     scene.add(pointLight);

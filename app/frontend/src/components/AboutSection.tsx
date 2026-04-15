@@ -61,20 +61,20 @@ function SkillCard({ group, delay, direction }: {
   return (
     <ScrollReveal delay={delay} direction={direction}>
       <div
-        className="relative h-full min-h-[200px] cursor-pointer"
+        className="relative cursor-pointer"
         style={{ perspective: 1000 }}
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
       >
         <motion.div
-          className="relative w-full h-full"
+          className="relative w-full"
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ transformStyle: "preserve-3d" }}
         >
-          {/* FRONT */}
+          {/* FRONT — skill tags. Stays in flow so container height = content height. */}
           <div
-            className="absolute inset-0 p-6 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-colors duration-300 bg-white/30 dark:bg-white/[0.02] rounded-[2px] flex flex-col"
+            className="p-6 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-colors duration-300 bg-white/30 dark:bg-white/[0.02] rounded-[2px]"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -83,7 +83,7 @@ function SkillCard({ group, delay, direction }: {
                 {group.category}
               </h3>
             </div>
-            <div className="flex flex-wrap gap-2 flex-1">
+            <div className="flex flex-wrap gap-2">
               {group.items.map((item) => (
                 <span
                   key={item.name}
@@ -93,14 +93,11 @@ function SkillCard({ group, delay, direction }: {
                 </span>
               ))}
             </div>
-            <p className="text-[10px] text-brown-300 dark:text-brown-700 tracking-[0.08em] uppercase mt-3">
-              Hover to see proficiency
-            </p>
           </div>
 
-          {/* BACK */}
+          {/* BACK — proficiency bars. Absolute overlay, matches front height exactly. */}
           <div
-            className="absolute inset-0 p-6 border border-gold/40 dark:border-brown-600 bg-white/40 dark:bg-white/[0.04] rounded-[2px] flex flex-col overflow-y-auto"
+            className="absolute inset-0 p-6 border border-gold/40 dark:border-brown-600 bg-white/40 dark:bg-white/[0.04] rounded-[2px] flex flex-col"
             style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -109,7 +106,7 @@ function SkillCard({ group, delay, direction }: {
                 {group.category}
               </h3>
             </div>
-            <div className="space-y-3 flex-1">
+            <div className="space-y-3 flex-1 overflow-y-auto">
               {group.items.map((item, j) => (
                 <div key={item.name}>
                   <div className="flex items-center justify-between mb-1">
