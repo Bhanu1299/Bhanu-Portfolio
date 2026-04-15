@@ -104,7 +104,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
       </div>
 
       {/* Click hint */}
-      <div className={`px-8 pb-4 text-[10px] text-brown-400 dark:text-brown-500 transition-opacity duration-300 ${expanded ? "opacity-0 h-0 pb-0 overflow-hidden" : "opacity-100"}`}>
+      <div className={`px-8 pb-4 text-xs text-brown-400 dark:text-brown-500 transition-opacity duration-300 ${expanded ? "opacity-0 h-0 pb-0 overflow-hidden" : "opacity-100"}`}>
         Click to expand
       </div>
     </motion.div>
