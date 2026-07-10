@@ -65,27 +65,40 @@ function TitlePage() {
   );
 }
 
-function ContentsPage({ featured }: { featured: Project[] }) {
+function ContentsPage({
+  items,
+  onJump,
+}: {
+  items: Project[];
+  onJump: (projectIndex: number) => void;
+}) {
   return (
-    <div className="flex flex-col h-full">
-      <span className="font-mono text-[9px] font-light tracking-[0.35em] uppercase text-brown-400 dark:text-brown-500 mb-6">
+    <div className="flex flex-col h-full min-h-0">
+      <span className="font-mono text-[9px] font-light tracking-[0.35em] uppercase text-brown-400 dark:text-brown-500 mb-4">
         Contents
       </span>
-      <div className="space-y-3.5">
-        {featured.map((p, i) => (
-          <div key={p.title} className="flex items-baseline gap-2">
-            <span className="font-display text-sm text-brown-800 dark:text-cream whitespace-nowrap overflow-hidden text-ellipsis">
+      <div className="space-y-[7px] overflow-hidden">
+        {items.map((p, i) => (
+          <button
+            key={p.title}
+            onClick={(e) => {
+              e.stopPropagation();
+              onJump(i);
+            }}
+            className="group flex items-baseline gap-2 w-full text-left cursor-pointer"
+          >
+            <span className="font-display text-[13px] leading-snug text-brown-800 dark:text-cream group-hover:text-gold dark:group-hover:text-gold-dark transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
               {p.title}
             </span>
             <span className="flex-1 border-b border-dotted border-brown-300/70 dark:border-brown-700 translate-y-[-3px]" />
             <span className="font-mono text-[10px] font-light text-brown-400 dark:text-brown-500">
               {String(i + 1).padStart(2, "0")}
             </span>
-          </div>
+          </button>
         ))}
       </div>
-      <p className="mt-auto font-display italic text-xs text-brown-400 dark:text-brown-500">
-        Turn a page corner, or drag a page like paper.
+      <p className="mt-auto pt-2 font-display italic text-xs text-brown-400 dark:text-brown-500">
+        Turn a page corner, drag a page, or pick a chapter.
       </p>
     </div>
   );
@@ -179,10 +192,10 @@ function ProjectRightPage({
 }
 
 export default function Broadsheet({
-  featured,
+  items,
   onSelect,
 }: {
-  featured: Project[];
+  items: Project[];
   onSelect: (p: Project) => void;
 }) {
   const reducedMotion = useReducedMotion();
@@ -192,14 +205,22 @@ export default function Broadsheet({
   const flippingRef = useRef(false); // true while an animation is committing
   const angle = useMotionValue(0);
 
+  // Project i lives on spread i + 1 (spread 0 is title + contents)
+  const jumpToProject = (projectIndex: number) => {
+    if (flippingRef.current) return;
+    setFlip(null);
+    angle.set(0);
+    setSpread(projectIndex + 1);
+  };
+
   // Build the page list. Title + contents fill spread 0, so each project's
   // left/right pair starts on an even index and shares one spread.
   const pages = useMemo(() => {
     const list: React.ReactNode[] = [
       <TitlePage key="title" />,
-      <ContentsPage key="contents" featured={featured} />,
+      <ContentsPage key="contents" items={items} onJump={jumpToProject} />,
     ];
-    featured.forEach((p, i) => {
+    items.forEach((p, i) => {
       const folio = String(i + 1).padStart(2, "0");
       list.push(<ProjectLeftPage key={`${p.title}-l`} project={p} folio={folio} />);
       list.push(<ProjectRightPage key={`${p.title}-r`} project={p} onSelect={onSelect} />);
@@ -207,7 +228,8 @@ export default function Broadsheet({
     list.push(<FinPage key="fin" />);
     if (list.length % 2 !== 0) list.push(<div key="blank" />);
     return list;
-  }, [featured, onSelect]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, onSelect]);
 
   const spreadCount = pages.length / 2;
   const canNext = spread < spreadCount - 1;

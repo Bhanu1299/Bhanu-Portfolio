@@ -179,62 +179,64 @@ export default function ProjectsSection() {
           />
         </ScrollReveal>
 
-        {/* Featured — bound as a book on desktop, cards on mobile */}
+        {/* Desktop: the whole catalogue lives in the book */}
         <ScrollReveal className="hidden md:block">
-          <Broadsheet featured={featured} onSelect={setSelectedProject} />
+          <Broadsheet items={projects} onSelect={setSelectedProject} />
         </ScrollReveal>
-        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {featured.map((project, i) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              delay={i * 0.12}
-              onSelect={setSelectedProject}
-            />
-          ))}
-        </div>
 
-        {/* Show More / Less button */}
-        {other.length > 0 && (
-          <div className="flex justify-center mt-10">
-            <motion.button
-              onClick={() => setShowMore((prev) => !prev)}
-              className="flex items-center gap-2 px-5 py-2.5 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-500 dark:hover:border-brown-500 font-mono text-[10px] font-light tracking-[0.2em] uppercase transition-all duration-200 rounded-[2px]"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              {showMore ? (
-                <>Show Less <ChevronUp className="w-3.5 h-3.5" /></>
-              ) : (
-                <>+ Show More Projects ({other.length}) <ChevronDown className="w-3.5 h-3.5" /></>
-              )}
-            </motion.button>
+        {/* Mobile: featured cards + expandable index */}
+        <div className="md:hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {featured.map((project, i) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                delay={i * 0.12}
+                onSelect={setSelectedProject}
+              />
+            ))}
           </div>
-        )}
 
-        {/* Additional projects — animated expand */}
-        <AnimatePresence>
-          {showMore && other.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.45, ease: [0.25, 0.4, 0.25, 1] }}
-              style={{ overflow: "hidden" }}
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-                {other.map((project, i) => (
-                  <ProjectCard
-                    key={project.title}
-                    project={project}
-                    delay={i * 0.1}
-                    onSelect={setSelectedProject}
-                  />
-                ))}
-              </div>
-            </motion.div>
+          {other.length > 0 && (
+            <div className="flex justify-center mt-10">
+              <motion.button
+                onClick={() => setShowMore((prev) => !prev)}
+                className="flex items-center gap-2 px-5 py-2.5 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-500 dark:hover:border-brown-500 font-mono text-[10px] font-light tracking-[0.2em] uppercase transition-all duration-200 rounded-[2px]"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                {showMore ? (
+                  <>Show Less <ChevronUp className="w-3.5 h-3.5" /></>
+                ) : (
+                  <>+ Show More Projects ({other.length}) <ChevronDown className="w-3.5 h-3.5" /></>
+                )}
+              </motion.button>
+            </div>
           )}
-        </AnimatePresence>
+
+          <AnimatePresence>
+            {showMore && other.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.45, ease: [0.25, 0.4, 0.25, 1] }}
+                style={{ overflow: "hidden" }}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
+                  {other.map((project, i) => (
+                    <ProjectCard
+                      key={project.title}
+                      project={project}
+                      delay={i * 0.1}
+                      onSelect={setSelectedProject}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Detail modal */}
