@@ -3,6 +3,7 @@ import { Github, X, ChevronDown, ChevronUp, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
+import Broadsheet from "./Broadsheet";
 import { projects } from "../data/portfolio";
 
 type Project = typeof projects[0];
@@ -178,8 +179,11 @@ export default function ProjectsSection() {
           />
         </ScrollReveal>
 
-        {/* Featured grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Featured — bound as a book on desktop, cards on mobile */}
+        <ScrollReveal className="hidden md:block">
+          <Broadsheet featured={featured} onSelect={setSelectedProject} />
+        </ScrollReveal>
+        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-5">
           {featured.map((project, i) => (
             <ProjectCard
               key={project.title}

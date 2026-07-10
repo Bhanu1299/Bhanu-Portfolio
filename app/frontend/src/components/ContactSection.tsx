@@ -1,26 +1,37 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Send, Github, Linkedin, Mail, MapPin, Heart } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
-import { motion } from "framer-motion";
+import WaxSeal from "./WaxSeal";
+import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [sealing, setSealing] = useState(false);
+  const timersRef = useRef<number[]>([]);
+
+  useEffect(() => () => timersRef.current.forEach(clearTimeout), []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+    if (sealing) return;
+    setSealing(true);
+
+    // Let the wax set, then hand the letter to the mail client
+    timersRef.current.push(
+      window.setTimeout(() => {
+        const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+        const body = encodeURIComponent(
+          `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+        );
+        window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, "_blank");
+      }, 1500),
+      window.setTimeout(() => {
+        setSealing(false);
+        setFormData({ name: "", email: "", message: "" });
+      }, 3200)
     );
-    window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, "_blank");
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
   };
 
   const inputClasses =
@@ -111,7 +122,21 @@ export default function ContactSection() {
 
             {/* Contact Form */}
             <ScrollReveal direction="right" delay={0.15}>
-              <div className="etched p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+              <div className="etched relative p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                {/* Wax seal overlay — the letter is sealed before it's sent */}
+                <AnimatePresence>
+                  {sealing && (
+                    <motion.div
+                      className="absolute inset-0 z-10 flex items-center justify-center bg-parchment/95 dark:bg-sepia-bg/95 rounded-[2px]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <WaxSeal initials="BT" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Your name" },
@@ -156,20 +181,13 @@ export default function ContactSection() {
 
                   <motion.button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg font-mono text-[10px] font-light tracking-[0.2em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
+                    disabled={sealing}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg font-mono text-[10px] font-light tracking-[0.2em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300 disabled:opacity-60"
                     whileHover={{ y: -1 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {submitted ? (
-                      <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring" }}>
-                        Opening email client...
-                      </motion.span>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-4 h-4" />
-                      </>
-                    )}
+                    Seal &amp; Send
+                    <Send className="w-4 h-4" />
                   </motion.button>
                 </form>
               </div>

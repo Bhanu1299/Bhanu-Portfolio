@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Code2, Cloud, Brain, Database, Terminal, Globe } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
+import ExLibris from "./ExLibris";
 import { motion, useInView } from "framer-motion";
 import { skills, stats as rawStats, personalInfo } from "../data/portfolio";
 
@@ -120,6 +121,9 @@ export default function AboutSection() {
         <ScrollReveal>
           <SectionHeading index="01" label="About Me" title="Turning Ideas Into Reality" />
         </ScrollReveal>
+
+        {/* Ex-libris bookplate — engraves itself as you scroll */}
+        <ExLibris className="mb-14" />
 
         {/* Bio — open editorial column with drop cap */}
         <ScrollReveal delay={0.1}>

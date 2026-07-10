@@ -42,6 +42,18 @@ The site already has a deliberate vintage-luxury identity (DM Serif Display, par
 - No content changes — `src/data/portfolio.ts` stays the single source of truth, untouched.
 - No new pages, no backend changes, no cursor-followers, no scroll-jacking.
 
+## Addendum (same day): the "wow" tier
+
+User asked for hard-to-build showpieces most sites don't attempt ("all except the teletype"). Added:
+
+1. **Letterpress hero** (`LetterpressName.tsx`) — a brass press roller sweeps down and prints the name: clip-path reveal in lockstep with the roller, SVG turbulence displacement for wet-ink edges that settle (animated `feDisplacementMap` scale 9→1.2), blind-deboss underlayer, deterministic per-letter baseline jitter like hand-set type.
+2. **Ink-wash transitions** (`InkWash.tsx`) — sepia brush strokes with turbulence-roughened edges sweep across three chapter boundaries in exact scroll sync (direct progress → clip-path, no smoothing).
+3. **Wax seal** (`WaxSeal.tsx`) — the contact form's "Seal & Send": molten oxblood wax drops with a squish, takes an embossed "BT" stamp, then the mail client opens.
+4. **Ex-libris bookplate** (`ExLibris.tsx`) — engraved crest (double frame, gold corner diamonds, ringed monogram, programmatic laurel branches) that stroke-draws itself in scroll sync at the top of About. Swap the monogram group for traced portrait paths when a photo exists.
+5. **The Broadsheet** (`Broadsheet.tsx`) — featured projects bound as a physical book with true 3D page turns around the spine: drag pages 1:1, click page corners, arrow keys; real-time fold shading and cast shadows follow the page angle. Desktop only; mobile keeps the card grid.
+
+All respect `prefers-reduced-motion` (instant states, no roller/flip animation).
+
 ## Verification
 
 `pnpm run check` clean; dev-server browser screenshots of every section in light and dark themes at desktop and 375px width.

@@ -8,6 +8,7 @@ import ContactSection from "@/components/ContactSection";
 import ThemeProvider from "@/components/ThemeProvider";
 import SplashScreen from "@/components/SplashScreen";
 import MarqueeDivider from "@/components/MarqueeDivider";
+import InkWash from "@/components/InkWash";
 
 export default function Index() {
   return (
@@ -26,12 +27,15 @@ export default function Index() {
             ]}
           />
           <AboutSection />
+          <InkWash />
           <ExperienceSection />
+          <InkWash />
           <EducationSection />
           <MarqueeDivider
             phrases={["Selected Works", "Built to Ship", "Crafted with Care"]}
           />
           <ProjectsSection />
+          <InkWash />
           <ContactSection />
         </div>
       </ThemeProvider>

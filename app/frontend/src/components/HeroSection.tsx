@@ -1,33 +1,14 @@
 import { Github, Linkedin, Mail, Download } from "lucide-react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
+import LetterpressName from "./LetterpressName";
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-/* Per-letter masked rise for one word */
-function RevealWord({ word, baseDelay }: { word: string; baseDelay: number }) {
-  return (
-    <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
-      {word.split("").map((letter, i) => (
-        <motion.span
-          key={i}
-          className="inline-block"
-          initial={{ y: "105%" }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.8, delay: baseDelay + i * 0.03, ease: EASE_OUT }}
-        >
-          {letter}
-        </motion.span>
-      ))}
-    </span>
-  );
-}
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
   const contentY = useTransform(scrollY, [0, 800], [0, 60]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
-  const reducedMotion = useReducedMotion();
 
   const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 20 },
@@ -35,7 +16,6 @@ export default function HeroSection() {
     transition: { duration: 0.6, delay, ease: EASE_OUT },
   });
 
-  const nameWords = personalInfo.name.split(" ");
   const nameClasses =
     "text-[13vw] sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.04] font-display font-normal tracking-tight";
 
@@ -77,50 +57,30 @@ export default function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Name — per-letter rise, gold-foil sheen sweep on top */}
-        <div className="relative mb-6 select-none">
-          {reducedMotion ? (
-            <h1 className={`${nameClasses} text-brown-900 dark:text-cream`}>
-              {personalInfo.name}
-            </h1>
-          ) : (
-            <>
-              <h1 className={`${nameClasses} text-brown-900 dark:text-cream`}>
-                {nameWords.map((word, w) => (
-                  <span key={w}>
-                    <RevealWord word={word} baseDelay={0.25 + w * 0.18} />
-                    {w < nameWords.length - 1 && " "}
-                  </span>
-                ))}
-              </h1>
-              <span
-                aria-hidden
-                className={`${nameClasses} foil-sheen absolute inset-0 text-transparent pointer-events-none`}
-              >
-                {personalInfo.name}
-              </span>
-            </>
-          )}
-        </div>
+        {/* Name — letterpress-printed by a passing brass roller */}
+        <LetterpressName
+          name={personalInfo.name}
+          className={`${nameClasses} mb-6 text-center`}
+        />
 
         {/* Gold rule — draws in beneath the name */}
         <motion.div
           className="h-[2px] bg-gold dark:bg-gold-dark mb-7"
           initial={{ width: 0 }}
           animate={{ width: 72 }}
-          transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 1.35, ease: "easeOut" }}
         />
 
         {/* Role — display italic */}
         <motion.p
           className="font-display italic text-xl sm:text-2xl text-brown-400 dark:text-brown-300 mb-5 tracking-wide"
-          {...fadeUp(1.0)}
+          {...fadeUp(1.5)}
         >
           Software Engineer
         </motion.p>
 
         {/* Craft line — gold left-bar pull quote */}
-        <motion.div className="flex items-center gap-3 mb-5" {...fadeUp(1.1)}>
+        <motion.div className="flex items-center gap-3 mb-5" {...fadeUp(1.6)}>
           <div className="w-0.5 h-4 bg-gold dark:bg-gold-dark flex-shrink-0" />
           <p className="font-display italic text-sm text-brown-400 dark:text-brown-500 tracking-wide">
             Shipping production-grade systems
@@ -130,7 +90,7 @@ export default function HeroSection() {
         {/* Tagline */}
         <motion.p
           className="text-sm sm:text-base text-brown-500 dark:text-brown-400 max-w-xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
-          {...fadeUp(1.2)}
+          {...fadeUp(1.7)}
         >
           {personalInfo.tagline}
         </motion.p>
@@ -138,7 +98,7 @@ export default function HeroSection() {
         {/* CTA buttons */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
-          {...fadeUp(1.3)}
+          {...fadeUp(1.8)}
         >
           <motion.button
             onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -175,7 +135,7 @@ export default function HeroSection() {
           className="flex items-center justify-center gap-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 2.0, duration: 0.6 }}
         >
           {[
             { icon: Github, href: personalInfo.github, label: "GitHub" },
@@ -201,7 +161,7 @@ export default function HeroSection() {
         className="relative z-10 flex flex-col items-center gap-3 pt-8 pb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
+        transition={{ delay: 2.2, duration: 0.8 }}
       >
         <span className="font-mono text-[9px] font-light tracking-[0.4em] uppercase text-brown-400 dark:text-brown-600">
           Scroll
