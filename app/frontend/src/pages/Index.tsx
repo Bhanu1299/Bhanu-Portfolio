@@ -7,17 +7,30 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import ThemeProvider from "@/components/ThemeProvider";
 import SplashScreen from "@/components/SplashScreen";
+import MarqueeDivider from "@/components/MarqueeDivider";
 
 export default function Index() {
   return (
     <SplashScreen>
       <ThemeProvider>
-        <div className="min-h-screen bg-[#0A0A0F] text-white selection:bg-indigo-500/30 theme-page-bg">
+        <div className="min-h-screen bg-parchment dark:bg-sepia-bg text-brown-900 dark:text-cream theme-page-bg">
+          <div className="grain-overlay" aria-hidden />
           <Navbar />
           <HeroSection />
+          <MarqueeDivider
+            phrases={[
+              "Software Engineering",
+              "Full-Stack Development",
+              "Machine Learning",
+              "Cloud Systems",
+            ]}
+          />
           <AboutSection />
           <ExperienceSection />
           <EducationSection />
+          <MarqueeDivider
+            phrases={["Selected Works", "Built to Ship", "Crafted with Care"]}
+          />
           <ProjectsSection />
           <ContactSection />
         </div>

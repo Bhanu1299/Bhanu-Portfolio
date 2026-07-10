@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { Code2, Cloud, Brain, Database, Terminal, Globe } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeading from "./SectionHeading";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { skills, stats as rawStats, personalInfo } from "../data/portfolio";
 
 const statIcons = [Code2, Cloud, Brain, Database, Terminal, Globe];
@@ -15,33 +15,13 @@ function proficiencyLevel(pct: number): string {
   return "Learning";
 }
 
-function SectionHeader({ label, title }: { label: string; title: React.ReactNode }) {
-  return (
-    <div className="text-center mb-16">
-      <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
-        {label}
-      </span>
-      <motion.div
-        className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
-        initial={{ width: 0 }}
-        whileInView={{ width: 56 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-      />
-      <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
-        {title}
-      </h2>
-    </div>
-  );
-}
-
 function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   return (
     <motion.div
       ref={ref}
-      className="text-2xl font-display text-brown-900 dark:text-cream"
+      className="font-mono font-light text-2xl text-brown-900 dark:text-cream tracking-tight"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -74,12 +54,12 @@ function SkillCard({ group, delay, direction }: {
         >
           {/* FRONT — skill tags. Stays in flow so container height = content height. */}
           <div
-            className="p-6 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-colors duration-300 bg-white/30 dark:bg-white/[0.02] rounded-[2px]"
+            className="etched p-6 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-colors duration-300 bg-white/30 dark:bg-white/[0.02] rounded-[2px]"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-px h-4 bg-gold dark:bg-gold-dark flex-shrink-0" />
-              <h3 className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.14em] uppercase">
+              <h3 className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 tracking-[0.25em] uppercase">
                 {group.category}
               </h3>
             </div>
@@ -102,7 +82,7 @@ function SkillCard({ group, delay, direction }: {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-px h-4 bg-gold dark:bg-gold-dark flex-shrink-0" />
-              <h3 className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.14em] uppercase">
+              <h3 className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 tracking-[0.25em] uppercase">
                 {group.category}
               </h3>
             </div>
@@ -111,7 +91,7 @@ function SkillCard({ group, delay, direction }: {
                 <div key={item.name}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs text-brown-700 dark:text-brown-300 font-medium">{item.name}</span>
-                    <span className="text-xs text-brown-400 dark:text-brown-500 tracking-wide">
+                    <span className="font-mono text-[10px] font-light text-brown-400 dark:text-brown-500 tracking-[0.12em] uppercase">
                       {proficiencyLevel(item.pct)}
                     </span>
                   </div>
@@ -135,37 +115,42 @@ function SkillCard({ group, delay, direction }: {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
+    <section id="about" className="relative py-28 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-6xl mx-auto relative">
         <ScrollReveal>
-          <SectionHeader label="About Me" title="Turning Ideas Into Reality" />
+          <SectionHeading index="01" label="About Me" title="Turning Ideas Into Reality" />
         </ScrollReveal>
 
-        {/* Bio */}
+        {/* Bio — open editorial column with drop cap */}
         <ScrollReveal delay={0.1}>
-          <div className="max-w-3xl mx-auto mb-16">
-            <div className="p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/50 dark:hover:border-brown-600 transition-all duration-500 bg-white/40 dark:bg-white/[0.02] space-y-4 rounded-[2px]">
-              {personalInfo.bio.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-brown-500 dark:text-brown-400 leading-relaxed text-base [&_strong]:text-brown-900 dark:[&_strong]:text-cream [&_strong]:font-semibold"
-                  dangerouslySetInnerHTML={{ __html: paragraph }}
-                />
-              ))}
+          <div className="max-w-3xl mx-auto mb-20 space-y-5">
+            {personalInfo.bio.map((paragraph, i) => (
+              <p
+                key={i}
+                className={`text-brown-500 dark:text-brown-400 leading-loose [&_strong]:text-brown-900 dark:[&_strong]:text-cream [&_strong]:font-semibold ${
+                  i === 0 ? "drop-cap text-base sm:text-lg" : "text-base"
+                }`}
+                dangerouslySetInnerHTML={{ __html: paragraph }}
+              />
+            ))}
+            <div className="flex items-center gap-4 pt-2">
+              <div className="h-px flex-1 bg-brown-200/70 dark:bg-brown-700/60" />
+              <span className="text-gold dark:text-gold-dark text-xs">✦</span>
+              <div className="h-px flex-1 bg-brown-200/70 dark:bg-brown-700/60" />
             </div>
           </div>
         </ScrollReveal>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
           {stats.map(({ icon: Icon, value, label }, i) => (
             <ScrollReveal key={label} delay={i * 0.08} direction={i % 2 === 0 ? "up" : "down"}>
-              <div className="p-5 border border-brown-200/60 dark:border-brown-700 text-center hover:border-gold/50 dark:hover:border-brown-600 transition-all duration-300 h-full bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                  <Icon className="w-5 h-5 text-gold dark:text-gold-dark mx-auto mb-2" />
-                </motion.div>
+              <div className="etched p-5 border border-brown-200/60 dark:border-brown-700 text-center hover:border-gold/50 dark:hover:border-brown-600 transition-all duration-300 h-full bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <Icon className="w-4 h-4 text-gold dark:text-gold-dark mx-auto mb-2.5" />
                 <AnimatedCounter value={value} />
-                <div className="text-xs text-brown-500 dark:text-brown-400 mt-1">{label}</div>
+                <div className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 tracking-[0.1em] uppercase mt-1.5">
+                  {label}
+                </div>
               </div>
             </ScrollReveal>
           ))}

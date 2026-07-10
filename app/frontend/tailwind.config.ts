@@ -21,6 +21,7 @@ export default {
       fontFamily: {
         display: ['"DM Serif Display"', 'Georgia', 'serif'],
         sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"DM Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',

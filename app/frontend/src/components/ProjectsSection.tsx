@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Github, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Github, X, ChevronDown, ChevronUp, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeading from "./SectionHeading";
 import { projects } from "../data/portfolio";
 
 type Project = typeof projects[0];
@@ -100,6 +101,10 @@ function TechBar({
   );
 }
 
+function folioNumber(project: Project): string {
+  return String(projects.indexOf(project) + 1).padStart(2, "0");
+}
+
 function ProjectCard({
   project,
   delay,
@@ -112,7 +117,7 @@ function ProjectCard({
   return (
     <ScrollReveal delay={delay} direction="up">
       <motion.div
-        className="relative group cursor-pointer border border-brown-200/60 dark:border-brown-700 bg-white/30 dark:bg-white/[0.02] rounded-[2px] overflow-hidden h-[280px] flex flex-col justify-between p-6"
+        className="etched relative group cursor-pointer border border-brown-200/60 dark:border-brown-700 bg-white/30 dark:bg-white/[0.02] rounded-[2px] overflow-hidden h-[290px] flex flex-col justify-between p-6"
         onClick={() => onSelect(project)}
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
@@ -121,11 +126,14 @@ function ProjectCard({
         {/* Bottom gold accent on hover */}
         <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gold dark:bg-gold-dark scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
 
-        {/* Hover border overlay */}
-        <div className="absolute inset-0 border border-transparent group-hover:border-gold/50 dark:group-hover:border-brown-600 transition-colors duration-300 rounded-[2px] pointer-events-none" />
-
         <div>
-          <h3 className="text-base font-display font-normal text-brown-900 dark:text-cream leading-snug mb-3">
+          <div className="flex items-start justify-between mb-4">
+            <span className="font-mono text-[11px] font-light text-brown-400 dark:text-brown-500 tracking-[0.2em]">
+              {folioNumber(project)}
+            </span>
+            <ArrowUpRight className="w-4 h-4 text-brown-300 dark:text-brown-700 group-hover:text-gold dark:group-hover:text-gold-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+          </div>
+          <h3 className="text-lg font-display font-normal text-brown-900 dark:text-cream leading-snug mb-3">
             {project.title}
           </h3>
           <p className="text-brown-500 dark:text-brown-400 text-sm leading-relaxed">
@@ -135,7 +143,7 @@ function ProjectCard({
 
         <div>
           <TechBar techs={project.techStack} techPercentages={project.techPercentages} compact />
-          <p className="text-[10px] text-brown-300 dark:text-brown-700 tracking-[0.08em] uppercase mt-3">
+          <p className="font-mono text-[9px] font-light text-brown-300 dark:text-brown-700 tracking-[0.2em] uppercase mt-3">
             Click for details
           </p>
         </div>
@@ -159,28 +167,15 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
+    <section id="projects" className="relative py-28 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-6xl mx-auto relative">
-        {/* Section header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
-              Portfolio
-            </span>
-            <motion.div
-              className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
-              initial={{ width: 0 }}
-              whileInView={{ width: 56 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            />
-            <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
-              My Projects
-            </h2>
-            <p className="text-brown-500 dark:text-brown-400 mt-4 max-w-lg mx-auto text-sm leading-relaxed">
-              Full-stack, ML, and cloud projects. Click any card to see full details.
-            </p>
-          </div>
+          <SectionHeading
+            index="04"
+            label="Portfolio"
+            title="My Projects"
+            blurb="Full-stack, ML, and cloud projects. Click any card to see full details."
+          />
         </ScrollReveal>
 
         {/* Featured grid */}
@@ -200,7 +195,7 @@ export default function ProjectsSection() {
           <div className="flex justify-center mt-10">
             <motion.button
               onClick={() => setShowMore((prev) => !prev)}
-              className="flex items-center gap-2 px-5 py-2 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-500 dark:hover:border-brown-500 text-xs tracking-[0.1em] uppercase transition-all duration-200 rounded-[2px]"
+              className="flex items-center gap-2 px-5 py-2.5 border border-brown-300 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-500 dark:hover:border-brown-500 font-mono text-[10px] font-light tracking-[0.2em] uppercase transition-all duration-200 rounded-[2px]"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -243,7 +238,7 @@ export default function ProjectsSection() {
         {selectedProject && (
           <>
             <motion.div
-              className="fixed inset-0 z-[100] bg-brown-900/40 dark:bg-brown-900/60"
+              className="fixed inset-0 z-[100] bg-brown-900/40 dark:bg-brown-900/60 backdrop-blur-[2px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -258,11 +253,19 @@ export default function ProjectsSection() {
               exit={{ opacity: 0, scale: 0.94, y: "-47%" }}
               transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
             >
-              {/* Header */}
+              {/* Header — editorial folio line */}
               <div className="flex items-start justify-between p-6 pb-4 border-b border-brown-200/60 dark:border-brown-700">
-                <h3 className="text-xl font-display font-normal text-brown-900 dark:text-cream">
-                  {selectedProject.title}
-                </h3>
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="font-mono text-[10px] font-light text-brown-400 dark:text-brown-500 tracking-[0.3em] uppercase">
+                      {`№ ${folioNumber(selectedProject)} — Project`}
+                    </span>
+                    <div className="w-8 h-px bg-gold dark:bg-gold-dark" />
+                  </div>
+                  <h3 className="text-xl font-display font-normal text-brown-900 dark:text-cream">
+                    {selectedProject.title}
+                  </h3>
+                </div>
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="p-2 text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream transition-colors"
@@ -279,7 +282,7 @@ export default function ProjectsSection() {
                 </p>
 
                 <div>
-                  <p className="text-xs text-brown-500 dark:text-brown-400 uppercase tracking-[0.12em] mb-3">
+                  <p className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 uppercase tracking-[0.25em] mb-3">
                     Tech Stack
                   </p>
                   <TechBar techs={selectedProject.techStack} techPercentages={selectedProject.techPercentages} compact={false} />

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { CheckCircle2, MapPin, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useInView } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeading from "./SectionHeading";
 import { experience } from "../data/portfolio";
 
 function TimelineCard({
@@ -15,24 +16,24 @@ function TimelineCard({
 }) {
   return (
     <div
-      className="rounded-[2px] p-5 bg-white/30 dark:bg-white/[0.02] border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 hover:bg-white/40 dark:hover:bg-white/[0.03] transition-colors duration-300 cursor-pointer select-none w-full"
+      className="etched rounded-[2px] p-5 bg-white/30 dark:bg-white/[0.02] border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 hover:bg-white/40 dark:hover:bg-white/[0.03] transition-colors duration-300 cursor-pointer select-none w-full"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3
-            className={`text-base font-bold transition-colors duration-300 ${
+            className={`font-display text-lg font-normal transition-colors duration-300 ${
               expanded ? "text-gold dark:text-gold-dark" : "text-brown-900 dark:text-cream"
             }`}
           >
             {job.company}
           </h3>
           <p className="text-brown-500 dark:text-brown-400 text-sm mt-0.5">{job.role}</p>
-          <div className="flex flex-wrap items-center gap-2 mt-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-medium border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
+          <div className="flex flex-wrap items-center gap-2 mt-2">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 font-mono text-[10px] font-light tracking-[0.08em] border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
               {job.dateRange}
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-medium border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 font-mono text-[10px] font-light tracking-[0.08em] border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 rounded-[2px]">
               <MapPin className="w-2.5 h-2.5" />
               {job.location}
             </span>
@@ -78,8 +79,39 @@ function TimelineCard({
   );
 }
 
+function TimelineDot({
+  expanded,
+  lit,
+  onToggle,
+  label,
+  className = "",
+}: {
+  expanded: boolean;
+  lit: boolean;
+  onToggle: () => void;
+  label: string;
+  className?: string;
+}) {
+  return (
+    <button
+      onClick={onToggle}
+      className={`w-4 h-4 rounded-full border-2 transition-all duration-500 z-10 relative ${className} ${
+        expanded
+          ? "bg-gold border-gold/80 shadow-[0_0_12px_rgba(201,169,110,0.6)]"
+          : lit
+          ? "bg-gold/70 border-gold shadow-[0_0_10px_rgba(201,169,110,0.45)]"
+          : "bg-parchment dark:bg-sepia-bg border-brown-300/70 dark:border-brown-700 hover:border-gold hover:shadow-[0_0_8px_rgba(201,169,110,0.4)]"
+      }`}
+      aria-label={label}
+    />
+  );
+}
+
 function TimelineItem({ job, index }: { job: typeof experience[0]; index: number }) {
   const [expanded, setExpanded] = useState(false);
+  const dotRef = useRef(null);
+  // Ignites as the scroll-drawn line passes the dot's position
+  const lit = useInView(dotRef, { margin: "-45% 0px -45% 0px" });
   const isLeft = index % 2 === 0;
 
   return (
@@ -96,15 +128,12 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
         </div>
 
         {/* Center column: dot */}
-        <div className="w-12 flex flex-col items-center flex-shrink-0 pt-5">
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={`w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 relative ${
-              expanded
-                ? "bg-gold border-gold/80 shadow-[0_0_12px_rgba(201,169,110,0.6)]"
-                : "bg-parchment dark:bg-sepia-bg border-gold/50 hover:border-gold hover:shadow-[0_0_8px_rgba(201,169,110,0.4)]"
-            }`}
-            aria-label={`Toggle ${job.company}`}
+        <div ref={dotRef} className="w-12 flex flex-col items-center flex-shrink-0 pt-5">
+          <TimelineDot
+            expanded={expanded}
+            lit={lit}
+            onToggle={() => setExpanded(!expanded)}
+            label={`Toggle ${job.company}`}
           />
         </div>
 
@@ -121,14 +150,12 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
       {/* Mobile: single column left-line layout */}
       <div className="md:hidden flex gap-4 mb-8">
         <div className="flex flex-col items-center flex-shrink-0" style={{ width: 24 }}>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={`relative z-10 w-4 h-4 mt-5 rounded-full border-2 transition-all duration-300 flex-shrink-0 ${
-              expanded
-                ? "bg-gold border-gold/80 shadow-[0_0_12px_rgba(201,169,110,0.6)]"
-                : "bg-parchment dark:bg-sepia-bg border-gold/50 hover:border-gold hover:shadow-[0_0_8px_rgba(201,169,110,0.4)]"
-            }`}
-            aria-label={`Toggle ${job.company}`}
+          <TimelineDot
+            expanded={expanded}
+            lit={lit}
+            onToggle={() => setExpanded(!expanded)}
+            label={`Toggle ${job.company}`}
+            className="mt-5 flex-shrink-0"
           />
         </div>
         <div className="flex-1">
@@ -140,50 +167,44 @@ function TimelineItem({ job, index }: { job: typeof experience[0]; index: number
 }
 
 export default function ExperienceSection() {
+  const timelineRef = useRef(null);
+  // Direct scroll mapping — no spring, so the line tracks scroll exactly
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.72", "end 0.45"],
+  });
+
   return (
-    <section id="experience" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
+    <section id="experience" className="relative py-28 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-5xl mx-auto relative">
-        {/* Section header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
-              Experience
-            </span>
-            <motion.div
-              className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
-              initial={{ width: 0 }}
-              whileInView={{ width: 56 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            />
-            <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
-              Work Experience
-            </h2>
-            <p className="text-brown-500 dark:text-brown-400 mt-4 max-w-lg mx-auto">
-              Building real systems, shipping real products, and solving real problems. Click any card to expand.
-            </p>
-          </div>
+          <SectionHeading
+            index="02"
+            label="Experience"
+            title="Work Experience"
+            blurb="Building real systems, shipping real products, and solving real problems. Click any card to expand."
+          />
         </ScrollReveal>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Center vertical line (desktop only) */}
-          <div
-            className="hidden md:block absolute left-1/2 top-5 bottom-5 w-px pointer-events-none -translate-x-1/2"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(201,169,110,0) 0%, rgba(201,169,110,0.4) 8%, rgba(201,169,110,0.4) 92%, rgba(201,169,110,0) 100%)",
-            }}
-          />
+        <div ref={timelineRef} className="relative">
+          {/* Center track + scroll-drawn gold line (desktop) */}
+          <div className="hidden md:block absolute left-1/2 top-5 bottom-5 w-px -translate-x-1/2 pointer-events-none">
+            <div className="absolute inset-0 bg-brown-200/60 dark:bg-brown-700/40" />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-b from-gold via-gold to-gold/40 dark:from-gold-dark dark:via-gold-dark dark:to-gold-dark/40 origin-top"
+              style={{ scaleY: scrollYProgress }}
+            />
+          </div>
 
-          {/* Left vertical line (mobile only) */}
-          <div
-            className="md:hidden absolute left-[11px] top-5 bottom-5 w-px pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(201,169,110,0) 0%, rgba(201,169,110,0.4) 8%, rgba(201,169,110,0.4) 92%, rgba(201,169,110,0) 100%)",
-            }}
-          />
+          {/* Left track + scroll-drawn gold line (mobile) */}
+          <div className="md:hidden absolute left-[11px] top-5 bottom-5 w-px pointer-events-none">
+            <div className="absolute inset-0 bg-brown-200/60 dark:bg-brown-700/40" />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-b from-gold via-gold to-gold/40 dark:from-gold-dark dark:via-gold-dark dark:to-gold-dark/40 origin-top"
+              style={{ scaleY: scrollYProgress }}
+            />
+          </div>
 
           {experience.map((job, i) => (
             <TimelineItem key={job.company} job={job} index={i} />

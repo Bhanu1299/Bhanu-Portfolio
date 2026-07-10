@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send, Github, Linkedin, Mail, MapPin, Heart } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeading from "./SectionHeading";
 import { motion } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
 
@@ -22,38 +23,27 @@ export default function ContactSection() {
     }, 3000);
   };
 
+  const inputClasses =
+    "w-full px-1 py-3 bg-transparent border-0 border-b border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream placeholder-brown-300 dark:placeholder-brown-700 focus:outline-none focus:border-gold dark:focus:border-gold-dark transition-all text-sm rounded-none";
+
   return (
     <>
-      <section id="contact" className="relative py-24 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
+      <section id="contact" className="relative py-28 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
         <div className="max-w-6xl mx-auto relative">
-          {/* Section Header */}
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-xs font-medium text-brown-500 dark:text-brown-400 tracking-[0.18em] uppercase">
-                Contact
-              </span>
-              <motion.div
-                className="h-[2px] bg-gold dark:bg-gold-dark mx-auto my-3"
-                initial={{ width: 0 }}
-                whileInView={{ width: 56 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              />
-              <h2 className="text-4xl sm:text-5xl font-display font-normal text-brown-900 dark:text-cream mt-1">
-                Let's Work Together
-              </h2>
-              <p className="text-brown-500 dark:text-brown-400 mt-4 max-w-lg mx-auto text-sm leading-relaxed">
-                I'm actively looking for new opportunities. Whether you have a question
-                or just want to say hi, I'll get back to you.
-              </p>
-            </div>
+            <SectionHeading
+              index="05"
+              label="Contact"
+              title="Let's Work Together"
+              blurb="I'm actively looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you."
+            />
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Contact Info */}
             <div className="space-y-6">
               <ScrollReveal direction="left" delay={0.1}>
-                <div className="p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <div className="etched p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
                   <h3 className="text-lg font-display font-normal text-brown-900 dark:text-cream mb-6">
                     Get In Touch
                   </h3>
@@ -74,9 +64,9 @@ export default function ContactSection() {
                           <Icon className="w-5 h-5 text-gold dark:text-gold-dark" />
                         </div>
                         <div>
-                          <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">{label}</div>
+                          <div className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.2em] uppercase">{label}</div>
                           <div className="text-sm">{value}</div>
-                          {cta && <div className="text-xs italic text-brown-300 dark:text-brown-400 mt-0.5">{cta}</div>}
+                          {cta && <div className="text-xs italic font-display text-brown-300 dark:text-brown-400 mt-0.5">{cta}</div>}
                         </div>
                       </motion.a>
                     ))}
@@ -89,7 +79,7 @@ export default function ContactSection() {
                         <MapPin className="w-5 h-5 text-gold dark:text-gold-dark" />
                       </div>
                       <div>
-                        <div className="text-xs text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.08em] uppercase">Location</div>
+                        <div className="font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 mb-0.5 tracking-[0.2em] uppercase">Location</div>
                         <div className="text-sm">{personalInfo.location}</div>
                       </div>
                     </motion.div>
@@ -99,7 +89,7 @@ export default function ContactSection() {
 
               {/* Resume CTA */}
               <ScrollReveal direction="left" delay={0.2}>
-                <div className="p-6 border border-brown-200/60 dark:border-brown-700 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <div className="etched p-6 border border-brown-200/60 dark:border-brown-700 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
                   <h4 className="font-display font-normal text-brown-900 dark:text-cream mb-2">
                     Looking for my resume?
                   </h4>
@@ -109,7 +99,7 @@ export default function ContactSection() {
                   <motion.a
                     href={personalInfo.resumePath}
                     download
-                    className="inline-flex items-center px-6 py-2.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg text-xs font-medium tracking-[0.1em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
+                    className="inline-flex items-center px-6 py-2.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg font-mono text-[10px] font-light tracking-[0.2em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
                     whileHover={{ y: -1 }}
                     whileTap={{ scale: 0.97 }}
                   >
@@ -121,44 +111,52 @@ export default function ContactSection() {
 
             {/* Contact Form */}
             <ScrollReveal direction="right" delay={0.15}>
-              <div className="p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
-                <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="etched p-8 border border-brown-200/60 dark:border-brown-700 hover:border-gold/40 dark:hover:border-brown-600 transition-all duration-500 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Your name" },
                     { id: "email", label: "Email", type: "email", placeholder: "your.email@example.com" },
                   ].map(({ id, label, type, placeholder }) => (
                     <div key={id}>
-                      <label className="block text-xs font-medium text-brown-500 dark:text-brown-400 mb-2 tracking-[0.08em] uppercase">
+                      <label
+                        htmlFor={`contact-${id}`}
+                        className="block font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 mb-1 tracking-[0.22em] uppercase"
+                      >
                         {label}
                       </label>
                       <input
+                        id={`contact-${id}`}
                         type={type}
                         required
                         value={formData[id as keyof typeof formData]}
                         onChange={(e) => setFormData({ ...formData, [id]: e.target.value })}
-                        className="w-full px-4 py-3 bg-transparent border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream placeholder-brown-300 dark:placeholder-brown-700 focus:outline-none focus:border-gold dark:focus:border-gold-dark transition-all text-sm rounded-[2px]"
+                        className={inputClasses}
                         placeholder={placeholder}
                       />
                     </div>
                   ))}
 
                   <div>
-                    <label className="block text-xs font-medium text-brown-500 dark:text-brown-400 mb-2 tracking-[0.08em] uppercase">
+                    <label
+                      htmlFor="contact-message"
+                      className="block font-mono text-[10px] font-light text-brown-500 dark:text-brown-400 mb-1 tracking-[0.22em] uppercase"
+                    >
                       Message
                     </label>
                     <textarea
+                      id="contact-message"
                       required
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-transparent border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream placeholder-brown-300 dark:placeholder-brown-700 focus:outline-none focus:border-gold dark:focus:border-gold-dark transition-all resize-none text-sm rounded-[2px]"
+                      className={`${inputClasses} resize-none`}
                       placeholder="Tell me about the opportunity or just say hello..."
                     />
                   </div>
 
                   <motion.button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg text-xs font-medium tracking-[0.1em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg font-mono text-[10px] font-light tracking-[0.2em] uppercase rounded-[2px] hover:bg-brown-900 dark:hover:bg-cream transition-colors duration-300"
                     whileHover={{ y: -1 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -180,35 +178,52 @@ export default function ContactSection() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer — editorial colophon */}
       <motion.footer
-        className="border-t border-brown-200/60 dark:border-brown-700 py-8 px-6 bg-parchment dark:bg-sepia-bg"
+        className="relative border-t border-brown-200/60 dark:border-brown-700 pt-16 pb-10 px-6 bg-parchment dark:bg-sepia-bg overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-brown-400 dark:text-brown-400">
-            {personalInfo.footerCopyright}{" "}
-            <Heart className="w-3 h-3 inline text-gold dark:text-gold-dark" />
-          </p>
-          <div className="flex items-center gap-4">
-            {[
-              { icon: Github, href: personalInfo.github, label: "GitHub" },
-              { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn" },
-              { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
-            ].map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                className="text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream transition-colors"
-                aria-label={label}
-                whileHover={{ scale: 1.2, y: -2 }}
-              >
-                <Icon className="w-4 h-4" />
-              </motion.a>
-            ))}
+        <div className="max-w-6xl mx-auto">
+          {/* Sign-off */}
+          <div className="text-center mb-12">
+            <p className="font-display italic text-2xl sm:text-3xl text-brown-800 dark:text-cream">
+              Thank you for reading.
+            </p>
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <div className="h-px w-16 bg-brown-200/80 dark:bg-brown-700/70" />
+              <span className="text-gold dark:text-gold-dark text-xs">✦</span>
+              <div className="h-px w-16 bg-brown-200/80 dark:bg-brown-700/70" />
+            </div>
+            <p className="font-mono text-[10px] font-light tracking-[0.3em] uppercase text-brown-400 dark:text-brown-600 mt-6">
+              Fin — First Edition
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-brown-200/50 dark:border-brown-700/50 pt-6">
+            <p className="text-sm text-brown-400 dark:text-brown-400">
+              {personalInfo.footerCopyright}{" "}
+              <Heart className="w-3 h-3 inline text-gold dark:text-gold-dark" />
+            </p>
+            <div className="flex items-center gap-4">
+              {[
+                { icon: Github, href: personalInfo.github, label: "GitHub" },
+                { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn" },
+                { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
+              ].map(({ icon: Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  className="text-brown-400 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream transition-colors"
+                  aria-label={label}
+                  whileHover={{ scale: 1.2, y: -2 }}
+                >
+                  <Icon className="w-4 h-4" />
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </motion.footer>

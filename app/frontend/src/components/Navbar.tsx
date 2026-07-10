@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Download, Sparkles } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
 import ThemeToggle from "./ThemeToggle";
@@ -15,6 +15,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -22,6 +23,25 @@ export default function Navbar() {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track which chapter is in view
+  useEffect(() => {
+    const sections = navLinks
+      .map((l) => document.querySelector(l.href))
+      .filter((el): el is Element => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   const scrollTo = (href: string) => {
@@ -40,7 +60,7 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-parchment/90 dark:bg-sepia-bg/90 border-b border-brown-200/60 dark:border-brown-700/60 shadow-sm"
+            ? "bg-parchment/90 dark:bg-sepia-bg/90 backdrop-blur-sm border-b border-brown-200/60 dark:border-brown-700/60 shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -57,25 +77,36 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link, i) => (
-              <motion.button
-                key={link.label}
-                onClick={() => scrollTo(link.href)}
-                className="text-xs text-brown-400 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream transition-colors tracking-[0.1em] uppercase relative group"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-              >
-                {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold dark:bg-gold-dark group-hover:w-full transition-all duration-300" />
-              </motion.button>
-            ))}
+            {navLinks.map((link, i) => {
+              const isActive = activeSection === link.href;
+              return (
+                <motion.button
+                  key={link.label}
+                  onClick={() => scrollTo(link.href)}
+                  className={`font-mono text-[10px] font-light tracking-[0.22em] uppercase relative group transition-colors ${
+                    isActive
+                      ? "text-brown-900 dark:text-cream"
+                      : "text-brown-400 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream"
+                  }`}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-gold dark:bg-gold-dark transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </motion.button>
+              );
+            })}
 
             {/* Resume */}
             <motion.a
               href={personalInfo.resumePath}
               download
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all text-xs tracking-[0.08em] uppercase rounded-[2px]"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all font-mono text-[10px] font-light tracking-[0.18em] uppercase rounded-[2px]"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45 }}
@@ -88,13 +119,15 @@ export default function Navbar() {
 
             {/* Open to work */}
             <motion.div
-              className="flex items-center gap-2 px-3 py-1.5 border border-gold dark:border-gold-dark bg-gold/10 dark:bg-gold-dark/10 rounded-[2px]"
+              className="flex items-center gap-2 px-3 py-1.5 border border-gold/50 dark:border-gold-dark/50 rounded-[2px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
-              <span className="text-xs text-brown-800 dark:text-cream tracking-[0.08em]">Open to Work</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-gold dark:bg-gold-dark animate-pulse" />
+              <span className="font-mono text-[10px] font-light text-brown-800 dark:text-cream tracking-[0.18em] uppercase">
+                Open to Work
+              </span>
             </motion.div>
 
             <ThemeToggle />
@@ -106,6 +139,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="text-brown-500 dark:text-brown-400 p-2"
+              aria-label="Toggle menu"
             >
               {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -125,7 +159,11 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="text-left text-sm text-brown-500 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream transition-colors py-1.5 tracking-[0.08em] uppercase"
+                  className={`text-left font-mono text-xs font-light tracking-[0.18em] uppercase py-1.5 transition-colors ${
+                    activeSection === link.href
+                      ? "text-brown-900 dark:text-cream"
+                      : "text-brown-500 dark:text-brown-400 hover:text-brown-900 dark:hover:text-cream"
+                  }`}
                 >
                   {link.label}
                 </button>
@@ -133,15 +171,17 @@ export default function Navbar() {
               <a
                 href={personalInfo.resumePath}
                 download
-                className="flex items-center gap-2 px-3.5 py-2 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all text-sm w-fit rounded-[2px] tracking-[0.08em] uppercase"
+                className="flex items-center gap-2 px-3.5 py-2 bg-brown-800 dark:bg-brown-300 text-parchment dark:text-sepia-bg hover:bg-brown-900 dark:hover:bg-cream transition-all font-mono text-xs font-light tracking-[0.18em] uppercase w-fit rounded-[2px]"
                 onClick={() => setIsMobileOpen(false)}
               >
                 <Download className="w-3.5 h-3.5" />
                 Download Resume
               </a>
-              <div className="flex items-center gap-2 px-3 py-1.5 border border-gold dark:border-gold-dark bg-gold/10 dark:bg-gold-dark/10 w-fit rounded-[2px]">
-                <Sparkles className="w-3 h-3 text-gold dark:text-gold-dark animate-pulse" />
-                <span className="text-xs text-brown-800 dark:text-cream tracking-[0.08em]">Open to Work</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 border border-gold/50 dark:border-gold-dark/50 w-fit rounded-[2px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold dark:bg-gold-dark animate-pulse" />
+                <span className="font-mono text-[10px] font-light text-brown-800 dark:text-cream tracking-[0.18em] uppercase">
+                  Open to Work
+                </span>
               </div>
             </div>
           </motion.div>
