@@ -9,6 +9,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import SplashScreen from "@/components/SplashScreen";
 import MarqueeDivider from "@/components/MarqueeDivider";
 import InkWash from "@/components/InkWash";
+import { marquees } from "@/data/portfolio";
 
 export default function Index() {
   return (
@@ -18,22 +19,13 @@ export default function Index() {
           <div className="grain-overlay" aria-hidden />
           <Navbar />
           <HeroSection />
-          <MarqueeDivider
-            phrases={[
-              "Software Engineering",
-              "Full-Stack Development",
-              "Machine Learning",
-              "Cloud Systems",
-            ]}
-          />
+          <MarqueeDivider phrases={marquees.afterHero} />
           <AboutSection />
           <InkWash />
           <ExperienceSection />
           <InkWash />
           <EducationSection />
-          <MarqueeDivider
-            phrases={["Selected Works", "Built to Ship", "Crafted with Care"]}
-          />
+          <MarqueeDivider phrases={marquees.beforeProjects} />
           <ProjectsSection />
           <InkWash />
           <ContactSection />

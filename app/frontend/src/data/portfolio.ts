@@ -8,9 +8,9 @@ export const personalInfo = {
 
   // ✏️ EDIT HERE — About Me Summary (each string is one paragraph, HTML tags supported)
   bio: [
-    `I'm a <strong>CS Master's graduate from the University at Buffalo</strong> with production experience in full-stack engineering, distributed systems, and GenAI applications. I shipped backend APIs, ML pipelines, and cloud infrastructure at scale — comfortable owning projects end to end, from schema design to CI/CD to live deployment.`,
-    `At <strong>Appetit</strong>, I designed a 20+ table loyalty rewards schema and built APIs handling 50K+ daily transactions with 100% uptime at launch. I owned the full loyalty program end-to-end — backend, mobile, web, and admin — on AWS ECS, cut deployment time 75% with automated CI/CD pipelines, and drove a 20% lift in user engagement across two release cycles. At <strong>AppsTek Corp</strong>, I engineered Spark/Kafka streaming pipelines processing 100K+ customer records, trained churn models hitting AUC 0.81, and built dashboards that eliminated a 2-day reporting lag entirely.`,
-    `On the AI/ML side, I build production-grade systems with <strong>LangGraph, LangChain, RAG pipelines, and multi-agent architectures</strong>. Recent work includes a fully autonomous career intelligence agent that scrapes, analyzes, and tailors applications end-to-end; a GenAI workflow automation platform maintaining sub-200ms retrieval latency under concurrent load; a multimodal knowledge assistant that improved retrieval accuracy 28% over keyword baseline; and Aria, a fully local macOS voice AI agent with LLM intent routing, vision fallback, and native OS control.`,
+    `It started in <strong>Eluru</strong> with a question: how does a machine understand us — any language, any command? That question carried me through <strong>VIT-AP in Amaravati</strong>, where I built my first real systems; to Hyderabad, where my code first met production and real stakes; and to the <strong>University at Buffalo</strong>, where the leap went global. I still haven't stopped answering it.`,
+    `Along the way I figured out what I actually love: making tedious work disappear. At <strong>Appetit</strong> I owned a loyalty program end to end — a 20-table schema and APIs holding 50K+ daily transactions at 100% uptime — shipped through sleepless nights and unknowns. At <strong>AppsTek</strong> I turned nightly batch reports into Spark/Kafka streams over 100K+ records and trained churn models (AUC 0.81) that gave retention campaigns a real head start — learning mid-flight, finishing anyway.`,
+    `These days the obsession looks like <strong>LangGraph agents, RAG pipelines, and multi-agent systems</strong> built for real friction, not résumé optics: Aria, a fully local voice agent that runs my Mac; a career agent born mid-job-search; a workflow platform that kills pipeline busywork; a multimodal assistant that ended document-digging. I care about production-mindedness and latency-versus-cost tradeoffs — systems that hold up. Off the clock: basketball, psychological horror films, and travel with no plan.`,
   ],
 
   // Contact & Social
@@ -20,6 +20,32 @@ export const personalInfo = {
   location: "Buffalo, NY • Open to Remote / Relocation",
   resumePath: `${import.meta.env.BASE_URL}docs/Bhanu_Teja_Resume.pdf`,
   footerCopyright: "© 2026 Bhanu Teja — written, designed, and built by hand.",
+};
+
+
+// ✏️ EDIT HERE — Marquee banner phrases (after hero, before projects)
+export const marquees = {
+  afterHero: [
+    "Software Engineering",
+    "GenAI Pipelines",
+    "Full-Stack Development",
+    "Multi-Agent Systems",
+    "Machine Learning",
+    "Production Backends",
+    "Cloud Systems",
+    "RAG & Retrieval",
+    "Automation That Sticks",
+  ],
+  beforeProjects: [
+    "Selected Works",
+    "Built to Ship",
+    "Crafted with Care",
+    "Born from Real Friction",
+    "Tedious Work, Made Extinct",
+    "Thirteen Chapters",
+    "First Edition",
+    "Read Cover to Cover",
+  ],
 };
 
 
