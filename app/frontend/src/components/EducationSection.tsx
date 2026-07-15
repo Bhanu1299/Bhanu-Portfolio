@@ -3,7 +3,7 @@ import { GraduationCap, BookOpen, Users, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
-import { education } from "../data/portfolio";
+import { education, sectionCopy } from "../data/portfolio";
 
 function EducationCard({ edu }: { edu: typeof education[0] }) {
   const [expanded, setExpanded] = useState(false);
@@ -121,9 +121,9 @@ export default function EducationSection() {
         <ScrollReveal>
           <SectionHeading
             index="03"
-            label="Education"
-            title="Education"
-            blurb="Academic foundation across computer science, machine learning, and systems. Click a card to see details."
+            label={sectionCopy.education.label}
+            title={sectionCopy.education.title}
+            blurb={sectionCopy.education.blurb}
           />
         </ScrollReveal>
 

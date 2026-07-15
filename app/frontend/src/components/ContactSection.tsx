@@ -4,7 +4,7 @@ import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
 import WaxSeal from "./WaxSeal";
 import { motion, AnimatePresence } from "framer-motion";
-import { personalInfo } from "../data/portfolio";
+import { personalInfo, sectionCopy } from "../data/portfolio";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -44,9 +44,9 @@ export default function ContactSection() {
           <ScrollReveal>
             <SectionHeading
               index="05"
-              label="Contact"
-              title="Let's Work Together"
-              blurb="I'm actively looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you."
+              label={sectionCopy.contact.label}
+              title={sectionCopy.contact.title}
+              blurb={sectionCopy.contact.blurb}
             />
           </ScrollReveal>
 
@@ -102,10 +102,10 @@ export default function ContactSection() {
               <ScrollReveal direction="left" delay={0.2}>
                 <div className="etched p-6 border border-brown-200/60 dark:border-brown-700 bg-white/30 dark:bg-white/[0.02] rounded-[2px]">
                   <h4 className="font-display font-normal text-brown-900 dark:text-cream mb-2">
-                    Looking for my resume?
+                    {sectionCopy.contact.resumeCardTitle}
                   </h4>
                   <p className="text-brown-500 dark:text-brown-400 text-sm mb-4 leading-relaxed">
-                    Download my latest resume to learn more about my experience.
+                    {sectionCopy.contact.resumeCardBody}
                   </p>
                   <motion.a
                     href={personalInfo.resumePath}

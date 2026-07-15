@@ -5,7 +5,7 @@ import SectionHeading from "./SectionHeading";
 import ExLibris from "./ExLibris";
 import SpecimenSheet from "./SpecimenSheet";
 import { motion, useInView } from "framer-motion";
-import { stats as rawStats, personalInfo } from "../data/portfolio";
+import { stats as rawStats, personalInfo, sectionCopy } from "../data/portfolio";
 
 const statIcons = [Code2, Cloud, Brain, Database, Terminal, Globe];
 const stats = rawStats.map((s, i) => ({ ...s, icon: statIcons[i] }));
@@ -31,7 +31,7 @@ export default function AboutSection() {
     <section id="about" className="relative py-28 px-6 overflow-hidden bg-parchment dark:bg-sepia-bg paper-texture">
       <div className="max-w-6xl mx-auto relative">
         <ScrollReveal>
-          <SectionHeading index="01" label="About Me" title="Turning Ideas Into Reality" />
+          <SectionHeading index="01" label={sectionCopy.about.label} title={sectionCopy.about.title} />
         </ScrollReveal>
 
         {/* Ex-libris bookplate — engraves itself as you scroll */}

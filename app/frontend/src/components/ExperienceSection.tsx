@@ -3,7 +3,7 @@ import { CheckCircle2, MapPin, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useInView } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
-import { experience } from "../data/portfolio";
+import { experience, sectionCopy } from "../data/portfolio";
 
 function TimelineCard({
   job,
@@ -180,9 +180,9 @@ export default function ExperienceSection() {
         <ScrollReveal>
           <SectionHeading
             index="02"
-            label="Experience"
-            title="Work Experience"
-            blurb="Building real systems, shipping real products, and solving real problems. Click any card to expand."
+            label={sectionCopy.experience.label}
+            title={sectionCopy.experience.title}
+            blurb={sectionCopy.experience.blurb}
           />
         </ScrollReveal>
 

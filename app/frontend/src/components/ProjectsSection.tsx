@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
 import Broadsheet from "./Broadsheet";
-import { projects } from "../data/portfolio";
+import { projects, sectionCopy } from "../data/portfolio";
 
 type Project = typeof projects[0];
 
@@ -173,9 +173,9 @@ export default function ProjectsSection() {
         <ScrollReveal>
           <SectionHeading
             index="04"
-            label="Portfolio"
-            title="My Projects"
-            blurb="Full-stack, ML, and cloud projects. Click any card to see full details."
+            label={sectionCopy.projects.label}
+            title={sectionCopy.projects.title}
+            blurb={sectionCopy.projects.blurb}
           />
         </ScrollReveal>
 

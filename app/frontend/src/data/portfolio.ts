@@ -3,7 +3,8 @@ export const personalInfo = {
   name: "Bhanu Teja Veeramachaneni",
   statusBadge: "MS Computer Science • Software & AI Engineer",
   tagline:
-    "I build things that ship — backend systems, GenAI pipelines, and full-stack solutions. LangGraph • RAG • LangChain • Node.js • FastAPI • AWS.",
+    "A kid in Eluru once wondered how a machine could understand us — any language, any command. The question never left. These days it looks like production backends, GenAI pipelines, and agents that make tedious work disappear.",
+  craftLine: "I automate the tedious until it disappears.",
 
   // ✏️ EDIT HERE — About Me Summary (each string is one paragraph, HTML tags supported)
   bio: [
@@ -18,7 +19,42 @@ export const personalInfo = {
   github: "https://github.com/Bhanu1299",
   location: "Buffalo, NY • Open to Remote / Relocation",
   resumePath: `${import.meta.env.BASE_URL}docs/Bhanu_Teja_Resume.pdf`,
-  footerCopyright: "© 2026 Bhanu Teja. Built with React.",
+  footerCopyright: "© 2026 Bhanu Teja — written, designed, and built by hand.",
+};
+
+
+// ✏️ EDIT HERE — Section headings & microcopy (titles, blurbs, small cards)
+export const sectionCopy = {
+  about: {
+    label: "About Me",
+    title: "Turning Questions Into Systems",
+  },
+  experience: {
+    label: "Experience",
+    title: "Work Experience",
+    blurb:
+      "Two teams trusted me with production. Both times: unknowns going in, shipped anyway. Click any card to expand.",
+  },
+  education: {
+    label: "Education",
+    title: "Education",
+    blurb:
+      "Eluru to Amaravati to Buffalo — the classroom half of the story. Click a card to see details.",
+  },
+  projects: {
+    label: "Portfolio",
+    title: "My Projects",
+    blurb:
+      "Every one of these started as something tedious I refused to do twice. Tap any card for the full story.",
+  },
+  contact: {
+    label: "Contact",
+    title: "Let's Work Together",
+    blurb:
+      "Open to strong engineering roles — GenAI and AI/ML leaning. If you're building something real, I'd like to hear about it.",
+    resumeCardTitle: "Prefer the formal version?",
+    resumeCardBody: "Same facts, fewer stories — the one-page edition for your files.",
+  },
 };
 
 
@@ -148,11 +184,11 @@ export const experience = [
     dateRange: "Jan 2025 – May 2025",
     location: "Buffalo, NY",
     bullets: [
-      "Architected a 20+ table relational schema with full ACID transaction guarantees, powering loyalty reward APIs that sustained 50K+ daily transactions with 100% uptime through launch — zero incident response required.",
-      "Owned the end-to-end loyalty program: designed backend APIs, integrated them across iOS, Android, and web surfaces, and rebuilt the admin portal — enabling real-time sync of reward rules and configurations across all platforms simultaneously.",
-      "Cut deployment time by 75% (40 min → 10 min) by building automated CI/CD pipelines with GitHub Actions, eliminating manual deployment steps and letting the team ship across all surfaces in a single workflow.",
-      "Containerized all backend services with Docker, standardizing local development and pre-PR testing environments — eliminating environment inconsistencies and ensuring deployment parity with AWS ECS production.",
-      "Drove a 20% lift in user engagement across two release cycles by delivering the full loyalty program — from data layer to mobile and web UI — consistently on time and without regression.",
+      "I designed the 20-table schema behind the loyalty program — full ACID guarantees — and the reward APIs on top of it. 50K+ transactions a day, 100% uptime through launch, zero incident calls.",
+      "The program was mine end to end: backend APIs, iOS, Android, web, and a rebuilt admin portal — with reward rules syncing in real time across every surface at once.",
+      "Deployments took 40 minutes and a checklist. I got them to 10 with GitHub Actions pipelines — one workflow, every surface, no manual steps.",
+      "I put every backend service in Docker so local development matched AWS ECS production exactly — 'works on my machine' stopped being a sentence anyone said.",
+      "Two release cycles, on time, no regressions — and a 20% lift in user engagement to show for it.",
     ],
   },
   {
@@ -161,9 +197,9 @@ export const experience = [
     dateRange: "Sep 2023 – May 2024",
     location: "Hyderabad",
     bullets: [
-      "Engineered distributed Spark/Kafka event-streaming pipelines processing 100K+ customer records, transforming data freshness from slow nightly batches to near-real-time hourly updates — enabling the business to act on customer signals same-day.",
-      "Designed, trained, and deployed churn prediction models achieving AUC 0.81 and F1 0.74, layered directly on top of the streaming pipeline — identifying at-risk customer segments and feeding actionable insights into targeted retention campaigns.",
-      "Built Power BI dashboards surfacing churn rates, retention KPIs, and at-risk cohort trends; adopted org-wide as the primary decision-making tool, eliminating a 2-day reporting lag and replacing ad-hoc analyst requests entirely.",
+      "Customer data arrived as slow nightly batches. I rebuilt the flow as Spark/Kafka streaming pipelines over 100K+ records — and the business went from acting on yesterday's signals to acting the same day.",
+      "On top of that stream I trained churn models (AUC 0.81, F1 0.74) that flagged at-risk customers early enough for retention campaigns to actually reach them.",
+      "The Power BI dashboards I built became the org's primary decision tool — a 2-day reporting lag gone, and the ad-hoc analyst requests gone with it.",
     ],
   },
 ];
@@ -184,13 +220,13 @@ export const education = [
       "Natural Language Processing",
     ],
     activities: [
-      "Built Aria, GenAI Workflow Platform, and Career Intelligence Agent independently alongside coursework",
-      "Completed full-time internship at Appetit while enrolled full-time",
+      "Built Aria, the GenAI Workflow Platform, and the Career Intelligence Agent on nights and weekends, alongside full coursework",
+      "Interned at Appetit while enrolled full-time — both got shipped",
     ],
   },
   {
     degree: "Bachelor of Technology in Computer Science",
-    school: "Vellore Institute of Technology",
+    school: "VIT-AP University, Amaravati",
     year: "2024",
     gpaLabel: "8.7/10 — First Class with Distinction",
     coursework: [
@@ -202,9 +238,9 @@ export const education = [
       "Artificial Intelligence",
     ],
     activities: [
-      "Microsoft Student Chapter — President: Led annual programme of workshops, speaker sessions, and technical events for a chapter of several hundred students; coordinated with Microsoft India",
-      "VITOPIA Student Event Coordinator — One of five coordinators selected from the full student body for VIT's largest annual festival; managed logistics, vendors, and volunteers at scale",
-      "VITAPP Technical Fest — Head of Relations & Promotions: Owned external communications, sponsor outreach, and promotion strategy",
+      "Microsoft Student Chapter — President: ran a year of workshops, speaker sessions, and technical events for several hundred students, working directly with Microsoft India",
+      "VITOPIA — one of five student coordinators picked from the whole student body for VIT-AP's largest annual festival; logistics, vendors, and volunteers, at scale",
+      "VITAPP Technical Fest — Head of Relations & Promotions: sponsor outreach and the promotion strategy",
     ],
   },
 ];
@@ -214,9 +250,9 @@ export const education = [
 export const projects = [
   {
     title: "Aria — macOS Voice AI Agent",
-    shortDescription: "Fully local macOS voice assistant with LLM intent routing, vision fallback, and native OS control.",
+    shortDescription: "A second brain for my Mac — hotkey, speak, done. Fully local, no cloud, no waiting.",
     fullDescription:
-      "Built a fully local voice assistant from scratch: a hotkey-triggered STT pipeline captures speech, routes it through a Groq LLM intent classifier across 6 intent categories (knowledge, web search, system control, media, navigation, briefings), and dispatches structured JSON to isolated modular handlers — zero cloud dependency for core inference. Solved auth-walled and JS-heavy site access with a silent screenshot + Llama-4-Scout vision fallback; persistent Playwright browser profiles maintain authenticated Gmail and LinkedIn sessions across restarts. Engineered an on-demand morning briefing pipeline that fetches live weather, Apple Calendar events, and Gmail inbox in parallel, synthesizes a spoken summary, and reads it aloud — all triggered with a single hotkey. Implemented native macOS system control via AppleScript: volume adjustment, Do Not Disturb toggling, app switching, and Apple Music playback.",
+      "Aria exists because I wanted a second brain that just handles things — hotkey, speak, done. It listens, decides what I meant, and does it: a local STT pipeline captures speech, a Groq-backed classifier routes it across six intent categories (knowledge, web search, system control, media, navigation, briefings), and structured JSON dispatches to isolated modular handlers. Core inference never leaves the machine. When a site hides behind logins or heavy JavaScript, Aria quietly screenshots it and reads the pixels with Llama-4-Scout vision — and persistent Playwright profiles keep Gmail and LinkedIn sessions alive across restarts. One hotkey in the morning fetches weather, calendar, and inbox in parallel and reads me the day. Volume, Do Not Disturb, app switching, Apple Music — all native AppleScript. The name fits: responsive, present, quietly capable.",
     techStack: ["Python", "Groq", "Llama 4 Scout", "Playwright", "AppleScript", "Whisper STT", "LangChain"],
     techPercentages: [
       { name: "Python", pct: 40 },
@@ -231,9 +267,9 @@ export const projects = [
   },
   {
     title: "Autonomous Career Intelligence Agent",
-    shortDescription: "Multi-agent LangGraph pipeline that scrapes, analyzes, and tailors job applications end-to-end.",
+    shortDescription: "Born mid-job-search: a multi-agent pipeline that tailors every application, so I could save my judgment for interviews.",
     fullDescription:
-      "Built a multi-agent LangGraph system using a planner–executor–critic architecture to fully automate the job search workflow: scrapes 30+ listings across multiple boards via Apify, decomposes each JD through three specialized agents to extract required skills, and ranks resume–JD alignment before any output is generated. Implemented a self-evaluation loop that scores each generated resume using cosine similarity, ATS keyword density, and skill precision — iterating automatically until a confidence threshold is met, with no human intervention between job description input and final output. Generates tailored resume variants and role-specific cover letters per listing, reducing the job application process from hours of manual tailoring to a single review-and-submit step — full pipeline runs end-to-end in under 60 seconds.",
+      "This one was born mid-job-search, decision fatigue and all. Too many listings, not enough bandwidth to tailor each application honestly — so instead of trusting shaky judgment under pressure, I built the agent. A planner–executor–critic LangGraph system scrapes 30+ listings across boards via Apify, decomposes each job description through three specialized agents, and ranks resume–JD alignment before generating a word. Then it grades its own output — cosine similarity, ATS keyword density, skill precision — and iterates until it clears a confidence threshold, with no human in the loop between job description and final draft. What used to be hours of manual tailoring per listing is now a single review-and-submit step; the full pipeline runs end-to-end in under 60 seconds.",
     techStack: ["LangGraph", "LangChain", "Python", "FastAPI", "Apify", "Prompt Engineering"],
     techPercentages: [
       { name: "LangGraph", pct: 35 },
@@ -248,9 +284,9 @@ export const projects = [
   },
   {
     title: "GenAI Workflow Automation Platform",
-    shortDescription: "Visual workflow builder for LLM-powered automation with sub-200ms retrieval latency.",
+    shortDescription: "A drag-and-drop builder that kills LLM pipeline busywork — sub-200ms retrieval, even under load.",
     fullDescription:
-      "Designed a visual workflow builder that abstracts LLM prompt orchestration, tool-calling, and vector retrieval into drag-and-drop configurable pipelines — eliminating the need for custom backend scripts for common tasks like summarization, classification, and data enrichment. Integrated Pinecone vector storage for contextual retrieval across workflow steps, maintaining sub-200ms retrieval latency under concurrent load through optimized embedding indexing and query batching. Built resilient long-running workflow execution with retry logic and exponential backoff to handle OpenAI rate limits and transient network failures gracefully — preventing silent drops in multi-step chains. Deployed containerized services on AWS ECS and Lambda, achieving cost-efficient auto-scaling without provisioned infrastructure; shipped a React dashboard surfacing per-step latency and token usage metrics for full pipeline observability.",
+      "Same instinct as everything I build: find the repeated manual step and remove it. Here, the step was writing yet another custom backend script for every LLM task — summarize this, classify that, enrich the other. So I built a visual workflow builder that turns prompt orchestration, tool-calling, and vector retrieval into drag-and-drop pipelines. Pinecone handles contextual retrieval across steps and stays under 200ms even with concurrent load, thanks to tuned embedding indexing and query batching. Long-running workflows survive OpenAI rate limits and flaky networks with retries and exponential backoff — no silent drops mid-chain. It runs containerized on AWS ECS and Lambda, scaling without provisioned infrastructure, and a React dashboard shows per-step latency and token spend — because the difference between a demo and a product is whether you can see what it costs.",
     techStack: ["React.js", "Node.js", "LangChain", "OpenAI API", "Pinecone", "AWS ECS/Lambda", "Docker"],
     techPercentages: [
       { name: "React.js", pct: 30 },
@@ -265,9 +301,9 @@ export const projects = [
   },
   {
     title: "Multi-Modal AI Knowledge Assistant",
-    shortDescription: "RAG system for PDFs, images, and tables with 28% improved retrieval accuracy.",
+    shortDescription: "Ask one question across PDFs, scans, and tables — instead of digging through them by hand.",
     fullDescription:
-      "Built a multimodal RAG system capable of indexing and querying across PDFs, scanned images, and structured tables. Improved retrieval accuracy 28% over keyword baseline by implementing modality-specific chunking strategies — tables and paragraphs processed through separate pipelines to preserve semantic structure before indexing. Achieved sub-200ms vector retrieval latency on 1K+ indexed documents by benchmarking and tuning FAISS index configuration. Enforced retrieval-constrained generation with confidence thresholds and fallback logic, prioritizing factual reliability over response completeness. Deployed on AWS Lambda with a React frontend.",
+      "Built to kill a specific chore: digging through folders of mixed-format documents — PDFs, scanned images, tables — hunting for one answer. This RAG system indexes all of it and answers questions across it. The 28% retrieval-accuracy gain over keyword baseline came from respecting structure: tables and paragraphs go through separate modality-specific chunking pipelines so their meaning survives indexing. FAISS, benchmarked and tuned, keeps vector retrieval under 200ms across 1K+ documents. And when confidence runs low, it says less instead of making things up — retrieval-constrained generation with thresholds and fallbacks, because a careful answer beats a complete-sounding one. Runs on AWS Lambda behind a React frontend.",
     techStack: ["Python", "LangChain", "RAG", "FAISS", "Pinecone", "OpenCV", "Tesseract", "React.js", "AWS Lambda"],
     techPercentages: [
       { name: "Python", pct: 35 },
@@ -282,9 +318,9 @@ export const projects = [
   },
   {
     title: "AI-Based Clinical Data System",
-    shortDescription: "NGS pipeline for early-stage clinical prediction — 92% detection accuracy, patent-awarded.",
+    shortDescription: "Patent-awarded healthcare AI — an NGS pipeline for early-stage clinical prediction at 92% accuracy.",
     fullDescription:
-      "Built an AI-driven NGS (Next-Generation Sequencing) pipeline in Python and Java for early-stage clinical prediction, achieving 92% detection accuracy. Applied object-oriented design principles to build a scalable, modular diagnostic system capable of processing high-throughput genomic data. Contributed to a patent-awarded innovation in healthcare AI — recognized for practical clinical applicability and pipeline design.",
+      "An AI-driven NGS (Next-Generation Sequencing) pipeline in Python and Java for early-stage clinical prediction, reaching 92% detection accuracy on high-throughput genomic data. I built it modular and object-oriented so the diagnostic system could grow past its first use case. The work contributed to a patent-awarded innovation in healthcare AI, recognized for practical clinical applicability.",
     techStack: ["Python", "Java", "Machine Learning", "Data Science", "OOP"],
     techPercentages: [
       { name: "Python", pct: 45 },
@@ -298,9 +334,9 @@ export const projects = [
   },
   {
     title: "Face Mask Recognition System",
-    shortDescription: "Real-time CV system for mask detection — built for public health enforcement.",
+    shortDescription: "Real-time computer vision that spots unmasked faces in a live feed — built when it mattered most.",
     fullDescription:
-      "Built a real-time face mask detection system using transfer learning and optimized CNN architectures, designed for deployment in public spaces to enforce mask compliance. Analyzes live video feed frame-by-frame, classifying each detected face as masked or unmasked with low-latency inference. Integrated alert logic for authorities and access control systems. Designed to generalize beyond COVID-19 — adaptable to other PPE or safety compliance scenarios.",
+      "A real-time system that watches a live video feed and flags unmasked faces — built for public spaces when that question mattered most. Transfer learning over optimized CNN architectures classifies every detected face, frame by frame, with low-latency inference, and alert hooks feed authorities and access-control systems. The design generalizes past COVID: any PPE or safety-compliance scenario works the same way.",
     techStack: ["Python", "PyTorch", "OpenCV", "Computer Vision", "TensorFlow"],
     techPercentages: [
       { name: "Python", pct: 35 },
@@ -314,9 +350,9 @@ export const projects = [
   },
   {
     title: "Smart Street Light System",
-    shortDescription: "IoT-enabled adaptive lighting with motion detection for urban energy savings.",
+    shortDescription: "Streetlights that pay attention — motion-aware brightness for real urban energy savings.",
     fullDescription:
-      "Designed and built an intelligent street lighting system that uses motion and vehicle detection to adaptively control brightness — turning lights on only when needed, reducing energy consumption in low-traffic periods. Integrated with Arduino-based sensor hardware and a lightweight ML model for vehicle classification. Architected for integration with broader smart city infrastructure including traffic management and parking systems. Demonstrated measurable energy savings in test deployments through adaptive dimming and predictive scheduling.",
+      "Streetlights that pay attention: motion and vehicle detection dim the lights when nobody's around and bring them up when someone is. Arduino sensor hardware feeds a lightweight ML model for vehicle classification, and the architecture plugs into wider smart-city systems — traffic management, parking. Test deployments showed measurable energy savings from adaptive dimming and predictive scheduling.",
     techStack: ["Arduino", "Python", "IoT", "Machine Learning", "TensorFlow", "Computer Vision"],
     techPercentages: [
       { name: "Python", pct: 40 },
@@ -330,9 +366,9 @@ export const projects = [
   },
   {
     title: "Traffic Sign Recognition — CNN",
-    shortDescription: "Deep learning CNN for real-time traffic sign classification, built for ADAS applications.",
+    shortDescription: "A CNN that reads traffic signs in real time — the perception piece of driver assistance.",
     fullDescription:
-      "Built a convolutional neural network for traffic sign recognition (TSR) — a core component of advanced driver-assistance systems (ADAS) and autonomous vehicles. The architecture uses multiple convolutional layers to progressively extract low- and high-level visual features, feeding into fully connected layers for final classification across a diverse set of traffic sign categories. Trained on a large labeled dataset of real-world sign images, achieving robust performance under varying lighting, angle, and occlusion conditions. Designed with inference speed as a constraint — suitable for real-time integration in vehicle perception pipelines.",
+      "A convolutional neural network that reads traffic signs in real time — the perception piece of advanced driver-assistance systems. Stacked convolutional layers pull visual features from low-level edges up to sign-level shapes, feeding fully connected layers that classify across a diverse set of sign categories. Trained on real-world images, it holds up under bad lighting, odd angles, and partial occlusion. Inference speed was a hard constraint throughout — a sign recognized late is a sign missed.",
     techStack: ["Python", "PyTorch", "TensorFlow", "CNN", "Deep Learning", "OpenCV"],
     techPercentages: [
       { name: "Python", pct: 30 },
@@ -346,9 +382,9 @@ export const projects = [
   },
   {
     title: "Real-Time Hand Gesture Recognition",
-    shortDescription: "OpenCV + ML system classifying hand gestures from live video by finger count.",
+    shortDescription: "Counts your fingers from live video and turns gestures into commands — no GPU required.",
     fullDescription:
-      "Built a real-time hand gesture recognition system using OpenCV and Python that classifies gestures from a live video stream by detecting and counting extended fingers. Implemented a computer vision pipeline covering hand segmentation, contour extraction, convexity defect analysis, and gesture classification — all running in real time without requiring a GPU. Designed as a foundation for touchless HCI applications: gesture-controlled interfaces, accessibility tools, and sign language interpretation systems.",
+      "Counts your fingers from a live video stream and turns gestures into commands — no GPU required. The OpenCV pipeline runs hand segmentation, contour extraction, convexity-defect analysis, and classification, all in real time. Built as a foundation for touchless interfaces: gesture control, accessibility tools, sign-language interpretation.",
     techStack: ["Python", "OpenCV", "Computer Vision", "Machine Learning", "NumPy"],
     techPercentages: [
       { name: "OpenCV", pct: 45 },
@@ -362,9 +398,9 @@ export const projects = [
   },
   {
     title: "Day/Night Image Detection",
-    shortDescription: "Computer vision classifier distinguishing day vs. night conditions from raw images.",
+    shortDescription: "A small classifier with one honest job: tell day from night using nothing but the pixels.",
     fullDescription:
-      "Built a binary image classifier that determines lighting conditions (day vs. night) from raw input images using computer vision techniques. Implemented feature extraction based on luminance histograms, color channel analysis, and brightness distribution to distinguish conditions without relying on metadata. Designed for integration into downstream vision systems — such as adaptive exposure control, headlight automation, or surveillance pipelines — where lighting context affects processing logic.",
+      "A small classifier with one honest job: tell day from night using nothing but the pixels. Luminance histograms, color-channel analysis, and brightness distribution make the call — no metadata shortcuts. Made to slot into bigger vision systems where lighting context changes the processing logic: adaptive exposure, headlight automation, surveillance pipelines.",
     techStack: ["Python", "OpenCV", "Computer Vision", "Scikit-learn", "NumPy"],
     techPercentages: [
       { name: "OpenCV", pct: 40 },
@@ -378,9 +414,9 @@ export const projects = [
   },
   {
     title: "Enterprise Admin Portal",
-    shortDescription: "Full-stack company admin system with ACID-compliant database and role-based access.",
+    shortDescription: "A full-stack admin system built on one conviction: data integrity is non-negotiable.",
     fullDescription:
-      "Designed and built a full-stack admin portal for enterprise company management, built around strict ACID transaction compliance to guarantee data integrity across all operations. Implemented a relational database schema supporting complex business entities — users, roles, departments, audit logs — with proper foreign key constraints, cascading rules, and transaction boundaries. Built a role-based access control (RBAC) layer restricting portal views and actions by user privilege. Delivered a clean admin UI for CRUD operations, reporting, and configuration management.",
+      "A full-stack admin portal built on one conviction: data integrity is non-negotiable. Strict ACID transaction boundaries guard every operation across a relational schema of users, roles, departments, and audit logs — proper foreign keys, cascading rules, no shortcuts. A role-based access control layer decides who sees and does what, and a clean admin UI handles CRUD, reporting, and configuration on top.",
     techStack: ["Java", "SQL", "PostgreSQL", "ACID Transactions", "REST APIs", "OOP"],
     techPercentages: [
       { name: "Java", pct: 40 },
@@ -394,9 +430,9 @@ export const projects = [
   },
   {
     title: "Course Management System",
-    shortDescription: "Full-featured LMS with content delivery, assignments, quizzes, and analytics.",
+    shortDescription: "A full LMS — courses, assignments, quizzes, and analytics in one place for both sides of the classroom.",
     fullDescription:
-      "Built a full-stack Course Management System (CMS/LMS) enabling instructors to create and organize course content, manage student enrollments, publish assignments and quizzes, and track learner progress through analytics dashboards. Students can access materials, submit work, receive grades, and monitor their own performance — all through a unified interface. Implemented secure authentication, role-based access for instructors vs. students, and a clean content hierarchy for multi-module courses. Designed with accessibility and scalability in mind.",
+      "A full course management system serving both sides of the classroom: instructors build courses, manage enrollments, publish assignments and quizzes, and watch learner progress on analytics dashboards; students access materials, submit work, get grades, and track their own performance — all in one interface. Secure authentication, clean instructor/student role separation, and a content hierarchy that keeps multi-module courses organized.",
     techStack: ["Java", "SQL", "HTML", "CSS", "JavaScript", "OOP"],
     techPercentages: [
       { name: "Java", pct: 35 },
@@ -410,9 +446,9 @@ export const projects = [
   },
   {
     title: "Pintos Operating System",
-    shortDescription: "Extended Stanford Pintos OS kernel — threads, virtual memory, and user programs.",
+    shortDescription: "Graduate OS coursework, the hard way — extending the Pintos kernel in C with no safety net.",
     fullDescription:
-      "Extended the Stanford Pintos educational OS kernel as part of graduate OS coursework, implementing core operating system subsystems from scratch in C. Built a thread scheduler supporting priority scheduling and priority donation to resolve priority inversion in synchronization primitives. Implemented virtual memory with demand paging, page fault handling, and a supplemental page table. Added user program support including argument passing, system call handling, and process management. Developed under tight constraints typical of real kernel development — no standard library, manual memory management, and hardware-level debugging.",
+      "Graduate OS coursework, the hard way: extending Stanford's Pintos kernel in C — no standard library, manual memory management, hardware-level debugging. I built the thread scheduler with priority scheduling and priority donation to defuse priority inversion in the synchronization primitives, implemented virtual memory with demand paging, page-fault handling, and a supplemental page table, and added user program support: argument passing, system calls, process management. Kernel work teaches you what every abstraction above it actually costs.",
     techStack: ["C", "Operating Systems", "Kernel Development", "Virtual Memory", "Multithreading"],
     techPercentages: [
       { name: "C", pct: 55 },

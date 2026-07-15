@@ -83,7 +83,7 @@ export default function HeroSection() {
         <motion.div className="flex items-center gap-3 mb-5" {...fadeUp(1.6)}>
           <div className="w-0.5 h-4 bg-gold dark:bg-gold-dark flex-shrink-0" />
           <p className="font-display italic text-sm text-brown-400 dark:text-brown-500 tracking-wide">
-            Shipping production-grade systems
+            {personalInfo.craftLine}
           </p>
         </motion.div>
 
