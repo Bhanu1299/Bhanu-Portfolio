@@ -17,7 +17,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/bhanuteja1299/",
   github: "https://github.com/Bhanu1299",
   location: "Buffalo, NY • Open to Remote / Relocation",
-  resumePath: "/docs/Bhanu_Teja_Resume.pdf",
+  resumePath: `${import.meta.env.BASE_URL}docs/Bhanu_Teja_Resume.pdf`,
   footerCopyright: "© 2026 Bhanu Teja. Built with React.",
 };
 
