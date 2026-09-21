@@ -39,8 +39,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
-          cache-dependency-path: app/frontend/pnpm-lock.yaml
+          # No `cache: pnpm` here. Its post-step (cache save) fails on this
+          # runner and marks otherwise-successful deploys as failed, which
+          # hides real failures. Install is fast enough without it.
       - name: Install dependencies
         working-directory: app/frontend
         run: pnpm install --frozen-lockfile
