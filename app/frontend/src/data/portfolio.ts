@@ -3,14 +3,14 @@ export const personalInfo = {
   name: "Bhanu Teja Veeramachaneni",
   statusBadge: "MS Computer Science • Software & AI Engineer",
   tagline:
-    "A kid in Eluru once wondered how a machine could understand us — any language, any command. The question never left. These days it looks like production backends, GenAI pipelines, and agents that make tedious work disappear.",
-  craftLine: "I automate the tedious until it disappears.",
+    "MS Computer Science, University at Buffalo. I build production backends, GenAI pipelines, and multi-agent systems — most recently a loyalty platform serving 50K+ transactions a day at 100% uptime through launch.",
+  craftLine: "I design systems for production, not for demos.",
 
   // ✏️ EDIT HERE — About Me Summary (each string is one paragraph, HTML tags supported)
   bio: [
-    `It started in <strong>Eluru</strong> with a question: how does a machine understand us — any language, any command? That question carried me through <strong>VIT-AP in Amaravati</strong>, where I built my first real systems; to Hyderabad, where my code first met production and real stakes; and to the <strong>University at Buffalo</strong>, where the leap went global. I still haven't stopped answering it.`,
-    `Along the way I figured out what I actually love: making tedious work disappear. At <strong>Appetit</strong> I owned a loyalty program end to end — a 20-table schema and APIs holding 50K+ daily transactions at 100% uptime — shipped through sleepless nights and unknowns. At <strong>AppsTek</strong> I turned nightly batch reports into Spark/Kafka streams over 100K+ records and trained churn models (AUC 0.81) that gave retention campaigns a real head start — learning mid-flight, finishing anyway.`,
-    `These days the obsession looks like <strong>LangGraph agents, RAG pipelines, and multi-agent systems</strong> built for real friction, not résumé optics: Aria, a fully local voice agent that runs my Mac; a career agent born mid-job-search; a workflow platform that kills pipeline busywork; a multimodal assistant that ended document-digging. I care about production-mindedness and latency-versus-cost tradeoffs — systems that hold up. Off the clock: basketball, psychological horror films, and travel with no plan.`,
+    `Software engineer with an MS in Computer Science from the <strong>University at Buffalo</strong> and a B.Tech from <strong>VIT-AP</strong>. I work across the stack, but the centre of gravity is backend systems and applied AI — the part where design decisions show up as latency, cost, and uptime.`,
+    `At <strong>Appetit</strong> I owned a loyalty platform end to end: a <strong>20-table ACID schema</strong> and the reward APIs on top of it, serving <strong>50K+ transactions per day at 100% uptime</strong> through launch, synchronised in real time across iOS, Android, web, and an admin portal. I containerised every backend service so local development matched AWS ECS exactly, and cut deployments from 40 minutes to 10 with GitHub Actions. At <strong>AppsTek</strong> I replaced nightly batch reporting with <strong>Spark/Kafka streaming pipelines</strong> over 100K+ records, and trained churn models (AUC 0.81) that gave retention campaigns a usable head start.`,
+    `Now I build <strong>LangGraph agents, RAG pipelines, and multi-agent systems</strong>: a planner–executor–critic pipeline that grades its own output before returning it, a workflow platform holding sub-200ms vector retrieval under concurrent load, a fully local voice agent that keeps inference on-device. What I care about is the unglamorous half — latency-versus-cost tradeoffs, retry and backoff behaviour, and knowing what a system costs per call before it ships.`,
   ],
 
   // Contact & Social
@@ -34,17 +34,17 @@ export const marquees = {
     "Production Backends",
     "Cloud Systems",
     "RAG & Retrieval",
-    "Automation That Sticks",
+    "Distributed Systems",
   ],
   beforeProjects: [
     "Selected Works",
+    "Production Systems",
+    "Multi-Agent Pipelines",
+    "Backend Architecture",
+    "RAG & Retrieval",
+    "Applied Machine Learning",
+    "Cloud Infrastructure",
     "Built to Ship",
-    "Crafted with Care",
-    "Born from Real Friction",
-    "Tedious Work, Made Extinct",
-    "Thirteen Chapters",
-    "First Edition",
-    "Read Cover to Cover",
   ],
 };
 
@@ -53,45 +53,45 @@ export const marquees = {
 export const sectionCopy = {
   about: {
     label: "About Me",
-    title: "Turning Questions Into Systems",
+    title: "Background & Focus",
   },
   experience: {
     label: "Experience",
     title: "Work Experience",
     blurb:
-      "Two teams trusted me with production. Both times: unknowns going in, shipped anyway. Click any card to expand.",
+      "Two production teams, delivery owned end to end — schema design through deployment. Click any card to expand.",
   },
   education: {
     label: "Education",
     title: "Education",
     blurb:
-      "Eluru to Amaravati to Buffalo — the classroom half of the story. Click a card to see details.",
+      "VIT-AP through the University at Buffalo. Click a card for coursework and detail.",
   },
   projects: {
     label: "Portfolio",
     title: "My Projects",
     blurb:
-      "Every one of these started as something tedious I refused to do twice. Tap any card for the full story.",
+      "Systems built against real constraints, with the architecture and tradeoffs written down. Tap any card for detail.",
   },
   contact: {
     label: "Contact",
     title: "Let's Work Together",
     blurb:
-      "Open to strong engineering roles — GenAI and AI/ML leaning. If you're building something real, I'd like to hear about it.",
+      "Open to software and AI/ML engineering roles. If you're building something substantial, I'd like to hear about it.",
     resumeCardTitle: "Prefer the formal version?",
-    resumeCardBody: "Same facts, fewer stories — the one-page edition for your files.",
+    resumeCardBody: "The one-page edition, for your files.",
   },
 };
 
 
 // ✏️ EDIT HERE — About Stats
 export const stats = [
-  { value: "13+", label: "Projects Built" },
-  { value: "3+", label: "Full-Stack Applications" },
-  { value: "5+", label: "ML/AI Systems" },
-  { value: "50K+", label: "Daily Transactions Handled" },
-  { value: "5+", label: "Years Coding" },
-  { value: "2", label: "Internships" },
+  { value: "50K+", label: "Daily Transactions" },
+  { value: "100%", label: "Launch Uptime" },
+  { value: "100K+", label: "Records Streamed" },
+  { value: "<200ms", label: "Vector Retrieval" },
+  { value: "0.81", label: "Churn Model AUC" },
+  { value: "4×", label: "Faster Deploys" },
 ];
 
 
@@ -114,7 +114,7 @@ export const skills = [
     color: "from-violet-500 to-purple-500",
     items: [
       { name: "React.js", pct: 87 },
-      { name: "HTML", pct: 91 },
+      { name: "HTML", pct: 88 },
       { name: "CSS", pct: 86 },
       { name: "Tailwind CSS", pct: 83 },
       { name: "React Native", pct: 71 },
@@ -163,14 +163,14 @@ export const skills = [
     category: "ML & Data",
     color: "from-amber-500 to-orange-500",
     items: [
-      { name: "Scikit-learn", pct: 92 },
-      { name: "FAISS", pct: 79 },
-      { name: "Predictive Analytics", pct: 88 },
-      { name: "Computer Vision", pct: 74 },
-      { name: "PyTorch", pct: 71 },
-      { name: "Pinecone", pct: 76 },
-      { name: "OpenCV", pct: 90 },
-      { name: "TensorFlow", pct: 95 },
+      { name: "Scikit-learn", pct: 84 },
+      { name: "FAISS", pct: 76 },
+      { name: "Predictive Analytics", pct: 79 },
+      { name: "Computer Vision", pct: 68 },
+      { name: "PyTorch", pct: 76 },
+      { name: "Pinecone", pct: 80 },
+      { name: "OpenCV", pct: 66 },
+      { name: "TensorFlow", pct: 62 },
     ],
   },
   {
@@ -188,9 +188,9 @@ export const skills = [
     category: "Tools & Platforms",
     color: "from-purple-500 to-pink-500",
     items: [
-      { name: "Git", pct: 93 },
-      { name: "GitHub", pct: 91 },
-      { name: "OOP", pct: 86 },
+      { name: "Git", pct: 88 },
+      { name: "GitHub", pct: 86 },
+      { name: "OOP", pct: 82 },
       { name: "Playwright", pct: 83 },
       { name: "n8n", pct: 68 },
       { name: "Apify", pct: 64 },
@@ -210,11 +210,11 @@ export const experience = [
     dateRange: "Jan 2025 – May 2025",
     location: "Buffalo, NY",
     bullets: [
-      "I designed the 20-table schema behind the loyalty program — full ACID guarantees — and the reward APIs on top of it. 50K+ transactions a day, 100% uptime through launch, zero incident calls.",
-      "The program was mine end to end: backend APIs, iOS, Android, web, and a rebuilt admin portal — with reward rules syncing in real time across every surface at once.",
-      "Deployments took 40 minutes and a checklist. I got them to 10 with GitHub Actions pipelines — one workflow, every surface, no manual steps.",
-      "I put every backend service in Docker so local development matched AWS ECS production exactly — 'works on my machine' stopped being a sentence anyone said.",
-      "Two release cycles, on time, no regressions — and a 20% lift in user engagement to show for it.",
+      "Designed the 20-table ACID schema behind the loyalty program and the reward APIs on top of it — 50K+ transactions per day at 100% uptime through launch, with zero production incidents.",
+      "Owned the program end to end across backend APIs, iOS, Android, web, and a rebuilt admin portal, with reward rules synchronising in real time across every surface.",
+      "Cut deployment time from 40 minutes to 10 by replacing a manual checklist with GitHub Actions pipelines — one workflow covering every surface.",
+      "Containerised all backend services with Docker so local environments matched AWS ECS production exactly, eliminating environment drift.",
+      "Delivered two release cycles on schedule with no regressions, contributing to a 20% lift in user engagement.",
     ],
   },
   {
@@ -223,9 +223,9 @@ export const experience = [
     dateRange: "Sep 2023 – May 2024",
     location: "Hyderabad",
     bullets: [
-      "Customer data arrived as slow nightly batches. I rebuilt the flow as Spark/Kafka streaming pipelines over 100K+ records — and the business went from acting on yesterday's signals to acting the same day.",
-      "On top of that stream I trained churn models (AUC 0.81, F1 0.74) that flagged at-risk customers early enough for retention campaigns to actually reach them.",
-      "The Power BI dashboards I built became the org's primary decision tool — a 2-day reporting lag gone, and the ad-hoc analyst requests gone with it.",
+      "Replaced slow nightly batch processing with Spark/Kafka streaming pipelines over 100K+ customer records, moving the business from next-day to same-day signals.",
+      "Trained churn models on the streaming data (AUC 0.81, F1 0.74), flagging at-risk customers early enough for retention campaigns to reach them.",
+      "Built the Power BI dashboards that became the org's primary decision tool, removing a 2-day reporting lag and the ad-hoc analyst queue with it.",
     ],
   },
 ];
@@ -246,8 +246,8 @@ export const education = [
       "Natural Language Processing",
     ],
     activities: [
-      "Built Aria, the GenAI Workflow Platform, and the Career Intelligence Agent on nights and weekends, alongside full coursework",
-      "Interned at Appetit while enrolled full-time — both got shipped",
+      "Built Aria, the GenAI Workflow Platform, and the Career Intelligence Agent alongside full coursework",
+      "Interned at Appetit while enrolled full-time, shipping two release cycles",
     ],
   },
   {
@@ -276,9 +276,9 @@ export const education = [
 export const projects = [
   {
     title: "Aria — macOS Voice AI Agent",
-    shortDescription: "A second brain for my Mac — hotkey, speak, done. Fully local, no cloud, no waiting.",
+    shortDescription: "Local-first macOS voice agent — on-device inference, six-way intent routing, no cloud round-trip.",
     fullDescription:
-      "Aria exists because I wanted a second brain that just handles things — hotkey, speak, done. It listens, decides what I meant, and does it: a local STT pipeline captures speech, a Groq-backed classifier routes it across six intent categories (knowledge, web search, system control, media, navigation, briefings), and structured JSON dispatches to isolated modular handlers. Core inference never leaves the machine. When a site hides behind logins or heavy JavaScript, Aria quietly screenshots it and reads the pixels with Llama-4-Scout vision — and persistent Playwright profiles keep Gmail and LinkedIn sessions alive across restarts. One hotkey in the morning fetches weather, calendar, and inbox in parallel and reads me the day. Volume, Do Not Disturb, app switching, Apple Music — all native AppleScript. The name fits: responsive, present, quietly capable.",
+      "A fully local voice agent for macOS, built so that core inference never leaves the machine. A local STT pipeline captures speech, a Groq-backed classifier routes it across six intent categories (knowledge, web search, system control, media, navigation, briefings), and structured JSON dispatches to isolated modular handlers. Core inference never leaves the machine. When a site hides behind logins or heavy JavaScript, Aria quietly screenshots it and reads the pixels with Llama-4-Scout vision — and persistent Playwright profiles keep Gmail and LinkedIn sessions alive across restarts. A single hotkey fetches weather, calendar, and inbox in parallel for a morning briefing. System control — volume, Do Not Disturb, app switching, Apple Music — runs through native AppleScript.",
     techStack: ["Python", "Groq", "Llama 4 Scout", "Playwright", "AppleScript", "Whisper STT", "LangChain"],
     techPercentages: [
       { name: "Python", pct: 40 },
@@ -288,14 +288,13 @@ export const projects = [
       { name: "Whisper STT", pct: 8 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: true,
   },
   {
     title: "Autonomous Career Intelligence Agent",
-    shortDescription: "Born mid-job-search: a multi-agent pipeline that tailors every application, so I could save my judgment for interviews.",
+    shortDescription: "Planner–executor–critic LangGraph pipeline that grades its own output before returning it.",
     fullDescription:
-      "This one was born mid-job-search, decision fatigue and all. Too many listings, not enough bandwidth to tailor each application honestly — so instead of trusting shaky judgment under pressure, I built the agent. A planner–executor–critic LangGraph system scrapes 30+ listings across boards via Apify, decomposes each job description through three specialized agents, and ranks resume–JD alignment before generating a word. Then it grades its own output — cosine similarity, ATS keyword density, skill precision — and iterates until it clears a confidence threshold, with no human in the loop between job description and final draft. What used to be hours of manual tailoring per listing is now a single review-and-submit step; the full pipeline runs end-to-end in under 60 seconds.",
+      "A planner–executor–critic LangGraph system scrapes 30+ listings across boards via Apify, decomposes each job description through three specialized agents, and ranks resume–JD alignment before generating a word. Then it grades its own output — cosine similarity, ATS keyword density, skill precision — and iterates until it clears a confidence threshold, with no human in the loop between job description and final draft. What used to be hours of manual tailoring per listing is now a single review-and-submit step; the full pipeline runs end-to-end in under 60 seconds.",
     techStack: ["LangGraph", "LangChain", "Python", "FastAPI", "Apify", "Prompt Engineering"],
     techPercentages: [
       { name: "LangGraph", pct: 35 },
@@ -305,14 +304,13 @@ export const projects = [
       { name: "LangChain", pct: 8 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: true,
   },
   {
     title: "GenAI Workflow Automation Platform",
-    shortDescription: "A drag-and-drop builder that kills LLM pipeline busywork — sub-200ms retrieval, even under load.",
+    shortDescription: "Visual pipeline builder for LLM orchestration — sub-200ms vector retrieval under concurrent load.",
     fullDescription:
-      "Same instinct as everything I build: find the repeated manual step and remove it. Here, the step was writing yet another custom backend script for every LLM task — summarize this, classify that, enrich the other. So I built a visual workflow builder that turns prompt orchestration, tool-calling, and vector retrieval into drag-and-drop pipelines. Pinecone handles contextual retrieval across steps and stays under 200ms even with concurrent load, thanks to tuned embedding indexing and query batching. Long-running workflows survive OpenAI rate limits and flaky networks with retries and exponential backoff — no silent drops mid-chain. It runs containerized on AWS ECS and Lambda, scaling without provisioned infrastructure, and a React dashboard shows per-step latency and token spend — because the difference between a demo and a product is whether you can see what it costs.",
+      "A visual workflow builder that replaces per-task custom backend scripts, turning prompt orchestration, tool-calling, and vector retrieval into drag-and-drop pipelines. Pinecone handles contextual retrieval across steps and stays under 200ms even with concurrent load, thanks to tuned embedding indexing and query batching. Long-running workflows survive OpenAI rate limits and flaky networks with retries and exponential backoff — no silent drops mid-chain. It runs containerized on AWS ECS and Lambda, scaling without provisioned infrastructure, and a React dashboard shows per-step latency and token spend — because the difference between a demo and a product is whether you can see what it costs.",
     techStack: ["React.js", "Node.js", "LangChain", "OpenAI API", "Pinecone", "AWS ECS/Lambda", "Docker"],
     techPercentages: [
       { name: "React.js", pct: 30 },
@@ -322,7 +320,6 @@ export const projects = [
       { name: "Docker", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: true,
   },
   {
@@ -339,7 +336,6 @@ export const projects = [
       { name: "Tesseract", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: true,
   },
   {
@@ -355,7 +351,6 @@ export const projects = [
       { name: "Data Science", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -371,7 +366,6 @@ export const projects = [
       { name: "TensorFlow", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -387,7 +381,6 @@ export const projects = [
       { name: "IoT", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -403,7 +396,6 @@ export const projects = [
       { name: "OpenCV", pct: 15 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -419,7 +411,6 @@ export const projects = [
       { name: "ML", pct: 8 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -435,7 +426,6 @@ export const projects = [
       { name: "NumPy", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -451,7 +441,6 @@ export const projects = [
       { name: "SQL", pct: 10 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -467,7 +456,6 @@ export const projects = [
       { name: "HTML/CSS", pct: 20 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
   {
@@ -483,7 +471,6 @@ export const projects = [
       { name: "Threading", pct: 8 },
     ],
     githubLink: "#",
-    liveLink: "#",
     featured: false,
   },
 ];

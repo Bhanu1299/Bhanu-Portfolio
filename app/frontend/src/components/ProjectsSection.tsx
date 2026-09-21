@@ -294,9 +294,12 @@ export default function ProjectsSection() {
                   <TechBar techs={selectedProject.techStack} techPercentages={selectedProject.techPercentages} compact={false} />
                 </div>
 
+                {selectedProject.githubLink && selectedProject.githubLink !== "#" && (
                 <div className="flex gap-3 pt-1">
                   <a
                     href={selectedProject.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 border border-brown-200 dark:border-brown-700 text-brown-500 dark:text-brown-400 hover:text-brown-800 dark:hover:text-cream hover:border-brown-400 dark:hover:border-brown-500 transition-all text-sm rounded-[2px]"
                     aria-label="GitHub"
                     onClick={(e) => e.stopPropagation()}
@@ -305,6 +308,7 @@ export default function ProjectsSection() {
                     GitHub
                   </a>
                 </div>
+                )}
               </div>
             </motion.div>
           </>
